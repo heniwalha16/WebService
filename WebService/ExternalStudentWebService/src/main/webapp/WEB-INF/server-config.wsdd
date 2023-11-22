@@ -1,0 +1,101 @@
+<ns1:deployment xmlns="http://xml.apache.org/axis/wsdd/" xmlns:java="http://xml.apache.org/axis/wsdd/providers/java" xmlns:ns1="http://xml.apache.org/axis/wsdd/">
+ <ns1:globalConfiguration>
+  <ns1:parameter name="sendMultiRefs" value="true"/>
+  <ns1:parameter name="disablePrettyXML" value="true"/>
+  <ns1:parameter name="adminPassword" value="admin"/>
+  <ns1:parameter name="attachments.Directory" value="C:\Users\Heni\eclipse-workspace\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\ExternalStudentWebService\WEB-INF\attachments"/>
+  <ns1:parameter name="dotNetSoapEncFix" value="true"/>
+  <ns1:parameter name="enableNamespacePrefixOptimization" value="false"/>
+  <ns1:parameter name="sendXMLDeclaration" value="true"/>
+  <ns1:parameter name="attachments.implementation" value="org.apache.axis.attachments.AttachmentsImpl"/>
+  <ns1:parameter name="sendXsiTypes" value="true"/>
+  <ns1:requestFlow>
+   <ns1:handler type="java:org.apache.axis.handlers.JWSHandler">
+    <ns1:parameter name="scope" value="session"/>
+   </ns1:handler>
+   <ns1:handler type="java:org.apache.axis.handlers.JWSHandler">
+    <ns1:parameter name="scope" value="request"/>
+    <ns1:parameter name="extension" value=".jwr"/>
+   </ns1:handler>
+  </ns1:requestFlow>
+ </ns1:globalConfiguration>
+ <ns1:handler name="URLMapper" type="java:org.apache.axis.handlers.http.URLMapper"/>
+ <ns1:handler name="Authenticate" type="java:org.apache.axis.handlers.SimpleAuthenticationHandler"/>
+ <ns1:handler name="LocalResponder" type="java:org.apache.axis.transport.local.LocalResponder"/>
+ <ns1:service name="AdminService" provider="java:MSG">
+  <ns1:parameter name="allowedMethods" value="AdminService"/>
+  <ns1:parameter name="enableRemoteAdmin" value="false"/>
+  <ns1:parameter name="className" value="org.apache.axis.utils.Admin"/>
+  <ns1:parameter name="scope" value="session"/>
+  <ns1:namespace>http://xml.apache.org/axis/wsdd/</ns1:namespace>
+ </ns1:service>
+ <ns1:service name="Version" provider="java:RPC">
+  <ns1:parameter name="allowedMethods" value="getVersion"/>
+  <ns1:parameter name="className" value="org.apache.axis.Version"/>
+ </ns1:service>
+ <ns1:service name="ExternalStudent" provider="java:RPC" style="wrapped" use="literal">
+  <ns2:operation name="getFullName" qname="ns1:getFullName" returnQName="ns1:getFullNameReturn" returnType="xsd:string" soapAction="" xmlns:ns1="http://student" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ns2="http://xml.apache.org/axis/wsdd/"/>
+  <ns1:operation name="getUser" qname="ns2:getUser" returnQName="ns2:getUserReturn" returnType="xsd:string" soapAction="" xmlns:ns2="http://student" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  <ns1:operation name="setUser" qname="ns3:setUser" soapAction="" xmlns:ns3="http://student">
+   <ns1:parameter qname="ns3:user" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  </ns1:operation>
+  <ns1:operation name="getMdp" qname="ns4:getMdp" returnQName="ns4:getMdpReturn" returnType="xsd:string" soapAction="" xmlns:ns4="http://student" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  <ns1:operation name="lookTByName" qname="ns5:lookTByName" returnQName="ns5:lookTByNameReturn" returnType="ns5:Tutors" soapAction="" xmlns:ns5="http://student">
+   <ns1:parameter qname="ns5:firstname" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <ns1:parameter qname="ns5:lastname" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  </ns1:operation>
+  <ns1:operation name="setMdp" qname="ns6:setMdp" soapAction="" xmlns:ns6="http://student">
+   <ns1:parameter qname="ns6:mdp" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  </ns1:operation>
+  <ns1:operation name="getUniversity" qname="ns7:getUniversity" returnQName="ns7:getUniversityReturn" returnType="xsd:string" soapAction="" xmlns:ns7="http://student" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  <ns1:operation name="setUniversity" qname="ns8:setUniversity" soapAction="" xmlns:ns8="http://student">
+   <ns1:parameter qname="ns8:university" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  </ns1:operation>
+  <ns1:operation name="getAllTutors" qname="ns9:getAllTutors" returnQName="ns9:getAllTutorsReturn" returnType="ns9:Tutors" soapAction="" xmlns:ns9="http://student"/>
+  <ns1:operation name="bookAppointement" qname="ns10:BookAppointement" soapAction="" xmlns:ns10="http://student">
+   <ns1:parameter qname="ns10:fullName" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <ns1:parameter qname="ns10:firstName" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <ns1:parameter qname="ns10:lastName" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <ns1:parameter qname="ns10:startt" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <ns1:parameter qname="ns10:endd" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  </ns1:operation>
+  <ns1:operation name="lookTByLastName" qname="ns11:lookTByLastName" returnQName="ns11:lookTByLastNameReturn" returnType="ns11:Tutors" soapAction="" xmlns:ns11="http://student">
+   <ns1:parameter qname="ns11:lastname" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  </ns1:operation>
+  <ns1:operation name="lookTByFirstName" qname="ns12:lookTByFirstName" returnQName="ns12:lookTByFirstNameReturn" returnType="ns12:Tutors" soapAction="" xmlns:ns12="http://student">
+   <ns1:parameter qname="ns12:firstname" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  </ns1:operation>
+  <ns1:operation name="lookTBySkill" qname="ns13:lookTBySkill" returnQName="ns13:lookTBySkillReturn" returnType="ns13:Tutors" soapAction="" xmlns:ns13="http://student">
+   <ns1:parameter qname="ns13:skill" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  </ns1:operation>
+  <ns1:operation name="setFullName" qname="ns14:setFullName" soapAction="" xmlns:ns14="http://student">
+   <ns1:parameter qname="ns14:fullName" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  </ns1:operation>
+  <ns1:parameter name="allowedMethods" value="lookTByName lookTByFirstName getUser getMdp lookTBySkill getUniversity getAllTutors setMdp lookTByLastName bookAppointement setFullName setUser getFullName setUniversity"/>
+  <ns1:parameter name="typeMappingVersion" value="1.2"/>
+  <ns1:parameter name="wsdlPortType" value="ExternalStudent"/>
+  <ns1:parameter name="className" value="student.ExternalStudent"/>
+  <ns1:parameter name="wsdlServicePort" value="ExternalStudent"/>
+  <ns1:parameter name="schemaQualified" value="http://student"/>
+  <ns1:parameter name="wsdlTargetNamespace" value="http://student"/>
+  <ns1:parameter name="wsdlServiceElement" value="ExternalStudentService"/>
+  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns15:Tutors" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:student.Tutors" xmlns:ns15="http://student"/>
+ </ns1:service>
+ <ns1:transport name="http">
+  <ns1:requestFlow>
+   <ns1:handler type="URLMapper"/>
+   <ns1:handler type="java:org.apache.axis.handlers.http.HTTPAuthHandler"/>
+  </ns1:requestFlow>
+  <ns1:parameter name="qs:list" value="org.apache.axis.transport.http.QSListHandler"/>
+  <ns1:parameter name="qs:wsdl" value="org.apache.axis.transport.http.QSWSDLHandler"/>
+  <ns1:parameter name="qs.list" value="org.apache.axis.transport.http.QSListHandler"/>
+  <ns1:parameter name="qs.method" value="org.apache.axis.transport.http.QSMethodHandler"/>
+  <ns1:parameter name="qs:method" value="org.apache.axis.transport.http.QSMethodHandler"/>
+  <ns1:parameter name="qs.wsdl" value="org.apache.axis.transport.http.QSWSDLHandler"/>
+ </ns1:transport>
+ <ns1:transport name="local">
+  <ns1:responseFlow>
+   <ns1:handler type="LocalResponder"/>
+  </ns1:responseFlow>
+ </ns1:transport>
+</ns1:deployment>
