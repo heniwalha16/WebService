@@ -3,8 +3,8 @@ import java.rmi.*;
 import java.time.Instant;
 import java.util.HashMap;
 public interface IStudent extends Remote{
-	public String getUser() throws RemoteException;
-	public void setUser(String user) throws RemoteException;
+	public String getMail() throws RemoteException;
+	public void setMail(String mail) throws RemoteException;
 	public String getMdp() throws RemoteException;
 	public void setMdp(String mdp) throws RemoteException;
 	public void setUniversity(String university)throws RemoteException;

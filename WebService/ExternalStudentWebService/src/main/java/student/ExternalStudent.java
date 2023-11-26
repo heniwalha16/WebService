@@ -10,22 +10,22 @@ import common.IService;
 import common.ITutor;
 
 public class ExternalStudent {
-	String User;
-	String Mdp;
-	String FullName;
-	String University;
+	String Mail="";
+	String Mdp="";
+	String FullName="";
+	String University="";
 	public ExternalStudent()  {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 	public String getUser() {
-		return User;
+		return Mail;
 	}
 	public Tutors lookTByName(String firstname, String lastname){
 		try {
-			 IService tubalaa = (IService) Naming.lookup("rmi://localhost/TutorService");
+			 IService tuts = (IService) Naming.lookup("rmi://localhost/TutorService");
 			List t=new ArrayList<ITutor>();
-			t=tubalaa.lookTByName(firstname,lastname);
+			t=tuts.lookTByName(firstname,lastname);
 			System.out.println(((ITutor)t.stream().findFirst().get()).getMdp());
 			System.out.println("aha");
 			return new Tutors(t);
@@ -37,9 +37,9 @@ public class ExternalStudent {
 	} 
 	public Tutors lookTByFirstName(String firstname){
 		try {
-			 IService tubalaa = (IService) Naming.lookup("rmi://localhost/TutorService");
+			 IService tuts = (IService) Naming.lookup("rmi://localhost/TutorService");
 			List t=new ArrayList<ITutor>();
-			t=tubalaa.lookTByFirstName(firstname);
+			t=tuts.lookTByFirstName(firstname);
 			System.out.println(((ITutor)t.stream().findFirst().get()).getMdp());
 			System.out.println("aha");
 			return new Tutors(t);
@@ -51,9 +51,9 @@ public class ExternalStudent {
 	} 
 	public Tutors lookTByLastName(String lastname){
 		try {
-			 IService tubalaa = (IService) Naming.lookup("rmi://localhost/TutorService");
+			 IService tuts = (IService) Naming.lookup("rmi://localhost/TutorService");
 			List t=new ArrayList<ITutor>();
-			t=tubalaa.lookTByLastName(lastname);
+			t=tuts.lookTByLastName(lastname);
 			System.out.println(((ITutor)t.stream().findFirst().get()).getMdp());
 			System.out.println("aha");
 			return new Tutors(t);
@@ -63,15 +63,10 @@ public class ExternalStudent {
 			 }
 		return null;
 	} 
-	public void bookAppointement(String fullName, String firstName, String lastName, String startt, String endd) {
+	public void bookAppointement(String mail, String fullName, String apt) {
 		try {
-	        HashMap<Instant, Instant> instantHashMap = new HashMap<>();
-	        // Put the entries in the HashMap
-	        Instant start = Instant.parse(startt);
-	        Instant end = Instant.parse(endd);
-	        instantHashMap.put(start, end);
 			 IService s = (IService) Naming.lookup("rmi://localhost/TutorService");
-			 //s.bookAppointment(fullName, firstName, lastName, instantHashMap);
+			 s.bookAppointment(mail, fullName, apt);
 			 }
 			 catch (Exception e) {
 			 System.out.println("Trouble " + e);
@@ -79,9 +74,9 @@ public class ExternalStudent {
 	}
 	public Tutors lookTBySkill(String skill){
 		try {
-			 IService tubalaa = (IService) Naming.lookup("rmi://localhost/TutorService");
+			 IService tuts = (IService) Naming.lookup("rmi://localhost/TutorService");
 			List t=new ArrayList<ITutor>();
-			t=tubalaa.lookTBySkill(skill);
+			t=tuts.lookTBySkill(skill);
 			return new Tutors(t);
 			 }
 			 catch (Exception e) {
@@ -89,11 +84,22 @@ public class ExternalStudent {
 			 }
 		return null;
 	}
+	public void giveFeedback(String feedback, String mail) {
+		try {
+			 IService tuts = (IService) Naming.lookup("rmi://localhost/TutorService");
+			 tuts.FeedBack(feedback, mail);
+
+			 }
+			 catch (Exception e) {
+			 System.out.println("Trouble " + e);
+			 }
+
+	}
 	public Tutors getAllTutors(){
 		try {
-			IService tubalaa = (IService) Naming.lookup("rmi://localhost/TutorService");
+			IService tuts = (IService) Naming.lookup("rmi://localhost/TutorService");
 			List t=new ArrayList<ITutor>();
-			t=tubalaa.getAllTutors();
+			t=tuts.getAllTutors();
 			return new Tutors(t);
 			 }
 			 catch (Exception e) {
@@ -102,7 +108,7 @@ public class ExternalStudent {
 		return null;
 	}
 	public void setUser(String user) {
-		User = user;
+		Mail = user;
 	}
 	public String getMdp() {
 		return Mdp;

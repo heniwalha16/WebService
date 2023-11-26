@@ -1,4 +1,14 @@
 eclipse.preferences.version=1
+encoding//src/main/java/FxtopAPI/ConvertResult.java=UTF-8
+encoding//src/main/java/FxtopAPI/CurrencyDescription.java=UTF-8
+encoding//src/main/java/FxtopAPI/FxtopServices.java=UTF-8
+encoding//src/main/java/FxtopAPI/FxtopServicesBindingStub.java=UTF-8
+encoding//src/main/java/FxtopAPI/FxtopServicesLocator.java=UTF-8
+encoding//src/main/java/FxtopAPI/FxtopServicesPortType.java=UTF-8
+encoding//src/main/java/bank/BankServer.java=UTF-8
+encoding//src/main/java/bank/BankServerService.java=UTF-8
+encoding//src/main/java/bank/BankServerServiceLocator.java=UTF-8
+encoding//src/main/java/bank/BankServerSoapBindingStub.java=UTF-8
 encoding//src/main/java/student/ExternalStudent.java=UTF-8
 encoding//src/main/java/student/ExternalStudentService.java=UTF-8
 encoding//src/main/java/student/ExternalStudentServiceLocator.java=UTF-8

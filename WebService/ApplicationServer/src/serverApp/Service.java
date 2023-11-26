@@ -1,4 +1,12 @@
 package serverApp;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.ProtocolException;
+import java.net.URL;
 import java.rmi.RemoteException;
 import java.rmi.server.RMIClientSocketFactory;
 import java.rmi.server.RMIServerSocketFactory;
@@ -9,6 +17,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import common.ITutor;
 import common.IService;
@@ -27,21 +37,20 @@ public class Service extends UnicastRemoteObject implements IService{
 	}
 
 	@Override
-	public void register(String user, String mdp,String firstname, String lastname) throws RemoteException {
+	public String register(String mail, String mdp,String firstname, String lastname) throws RemoteException {
 		// TODO Auto-generated method stub	
 		boolean b=false;
 		for(Tutor t : Tutors) {
-		 if (t.getUser().equals(user)&& t.getMdp().equals(mdp)) {
-			 System.out.println("This account is already existed");
+		 if (t.getMail().equals(mail)&& t.getMdp().equals(mdp)) {
 		 	b=true;
-		 	break;
+		 	return "This account is already existed";
 		} }
 		if (b==false) {
-			Tutor tut = new Tutor( user,  mdp, firstname,  lastname);
+			Tutor tut = new Tutor( mail,  mdp, firstname,  lastname);
 			Tutors.add(tut);
-			System.out.println("Registred succefuly");
+			return "Registred succefuly";
 		}
-		
+		return "";
 			
 	}
 
@@ -100,49 +109,36 @@ public class Service extends UnicastRemoteObject implements IService{
 	}
 
 	@Override
-	public void login(String user, String mdp) throws RemoteException {
+	public String login(String mail, String mdp) throws RemoteException {
 		// TODO Auto-generated method stub
 		boolean b=false;
 		for(Tutor t : Tutors) {
-		 if (t.getUser().equals(user)&& t.getMdp().equals(mdp)) {
-			System.out.println("Login Succesful");
+		 if (t.getMail().equals(mail)) {
 		 	b=true;
-		 	break;
+		 	return "Login Succesful";
 		} }
 		if (b==false) {
-			System.out.println("User Not Found");
+			return "User Not Found";
 		}
+		return "";
 		
 	}
-	public Tutor retrieveElement(String firstName, String lastName) throws RemoteException {
+	public Tutor retrieveElement(String mail) throws RemoteException {
 		for(Tutor t : Tutors) {
-			 if (t.getFirstname().equals(firstName)&& t.getLastname().equals(lastName))
+			 if (t.getMail().equals(mail))
 				 return t;
 			} 
 		Tutor tut=new Tutor();
 		return tut ;
 	}
 	@Override
-	public void bookAppointment(String fullName, String firstName, String lastName, String apt) throws RemoteException {
+	public String bookAppointment(String mail, String student, String apt) throws RemoteException {
 	    // TODO: Implement lookTByName method
 
 
-	    if (!lookTByName(firstName,lastName).isEmpty()) {
+	    if (!retrieveElement(mail).getMail().equals("")) {
 	    	
-	    	HashMap< String,String > av = retrieveElement(firstName,lastName).getAvailibality();
-	    	/*Iterator<Map.Entry< String,String >> iterator = av.entrySet().iterator();
-	    	System.out.println(av.toString());
-	    	if (iterator.hasNext()) {
-	            // Get the first entry
-	            Map.Entry< String,String > entry = iterator.next();
-
-	            // Get the key
-	            String firstKey = entry.getKey();
-
-	            System.out.println("First Key: " + firstKey);
-	        }
-	    	System.out.println(av.containsKey(apt));*/
-	    	// retrieveElement(firstName,lastName)
+	    	HashMap< String,String > av = retrieveElement(mail).getAvailability();
 
 	        if (av.containsKey(apt)) {
 	    		//System.out.println("hiha33");
@@ -151,27 +147,120 @@ public class Service extends UnicastRemoteObject implements IService{
 	            if (studentName.equals("")) {
 	                // If the student name is empty, remove the entry with an empty student name and add a new one
 	                av.remove(apt);
-	                av.put(apt, fullName);
-	                retrieveElement(firstName,lastName).setAvailibality(av);
+	                av.put(apt, student);
+	                retrieveElement(mail).setAvailability(av);
 	                //System.out.println(retrieveElement(firstName,lastName).getAvailibality().toString());
-	                System.out.println("Appointement Booked.");
+	                return "Appointement Booked.";
 	            } else {
-	                List<String> waitingList = retrieveElement(firstName,lastName).getWaitingList();
-	                waitingList.add(fullName);
-	                retrieveElement(firstName,lastName).setWaitingList(waitingList);
-	                System.out.println("You are on the waiting list.");
+	                List<String> waitingList = retrieveElement(mail).getWaitingList();
+	                waitingList.add(student);
+	                retrieveElement(mail).setWaitingList(waitingList);
+	                return "You are on the waiting list.";
 	            }
 	        } else {
-	            List<String> waitingList = retrieveElement(firstName,lastName).getWaitingList();
+	            List<String> waitingList = retrieveElement(mail).getWaitingList();
 	            ///System.out.println("hihaaaaaaaa33");
-	            waitingList.add(fullName);
+	            waitingList.add(student);
 	            //System.out.println("hihaaaaaaaa33");
-	            retrieveElement(firstName,lastName).setWaitingList(waitingList);
-	            System.out.println("You are on the waiting list.");
+	            retrieveElement(mail).setWaitingList(waitingList);
+	            return "You are on the waiting list.";
 	        }
 	    } else {
-	        System.out.println("Tutor not found.");
+	        return "Tutor not found.";
 	    }
+	}
+	public void FeedBack(String feedback, String mail) throws RemoteException ,IOException {
+	    // TODO: Implement lookTByName method
+		String apiKey = "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";
+
+        // API endpoint URL
+        String apiUrl = "https://api-inference.huggingface.co/models/nlptown/bert-base-multilingual-uncased-sentiment";
+
+        // JSON payload for the API request
+        String jsonInput = "{\"inputs\": [\"" + feedback + "\"]}";
+
+        // Create URL object
+        URL url = new URL(apiUrl);
+        HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+
+        // Set the request method to POST
+        connection.setRequestMethod("POST");
+
+        // Set request headers
+        connection.setRequestProperty("Content-Type", "application/json");
+        connection.setRequestProperty("Authorization", "Bearer " + apiKey);
+
+        // Enable input/output streams
+        connection.setDoOutput(true);
+
+        // Write the JSON payload to the request
+        try (OutputStream os = connection.getOutputStream()) {
+            byte[] input = jsonInput.getBytes("utf-8");
+            os.write(input, 0, input.length);
+        }
+
+        // Get the response code
+        int responseCode = connection.getResponseCode();
+        System.out.println("Response Code: " + responseCode);
+
+        // Read the response
+        try (BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()))) {
+            String line;
+            StringBuilder response = new StringBuilder();
+            while ((line = reader.readLine()) != null) {
+                response.append(line);
+            }
+            System.out.println("Response: " + response.toString());
+            parseJsonResponse(response.toString());
+         // Define the pattern for extracting the number
+            Pattern pattern = Pattern.compile("\\d+");
+
+            // Create a matcher object
+            Matcher matcher = pattern.matcher(response.toString());
+            double rating=0.0;
+            // Check if the pattern is found
+            if (matcher.find()) {
+                // Extract the matched number
+                String numberStr = matcher.group();
+
+                // Convert the string to an integer
+                 rating = Integer.parseInt(numberStr);}
+            double moy= (retrieveElement(mail).getRating()* retrieveElement(mail).getNbFeedback() + rating)/(retrieveElement(mail).getNbFeedback()+1);
+            retrieveElement(mail).setNbFeedback((retrieveElement(mail).getNbFeedback()+1));
+            retrieveElement(mail).setRating(moy);
+            
+        }
+
+        // Close the connection
+        connection.disconnect();
+    
+	}
+	public void parseJsonResponse(String string) {
+		// TODO Auto-generated method stub
+
+		try {
+            // Use regular expressions to extract label and score
+            Pattern pattern = Pattern.compile("\\{\"label\":\"([^\"]+)\",\"score\":([0-9\\.]+)\\}");
+            Matcher matcher = pattern.matcher(string);
+
+            double maxScore = Double.MIN_VALUE;
+            String highestLabel = "";
+
+            while (matcher.find()) {
+                String label = matcher.group(1);
+                double score = Double.parseDouble(matcher.group(2));
+
+                if (score > maxScore) {
+                    maxScore = score;
+                    highestLabel = label;
+                }
+            }
+
+            System.out.println("Highest Label: " + highestLabel);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 	}
 
 

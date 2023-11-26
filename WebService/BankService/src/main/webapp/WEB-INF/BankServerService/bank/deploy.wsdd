@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?><!-- Use this file to deploy some handlers/chains and services      --><!-- Two ways to do this:                                           --><!--   java org.apache.axis.client.AdminClient deploy.wsdd          --><!--      after the axis server is running                          --><!-- or                                                             --><!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   --><!--      from the same directory that the Axis engine runs         --><deployment xmlns="http://xml.apache.org/axis/wsdd/" xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from BankServerService WSDL service -->
+
+  <service name="BankServer" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://bank"/>
+      <parameter name="wsdlServiceElement" value="BankServerService"/>
+      <parameter name="schemaQualified" value="http://bank"/>
+      <parameter name="wsdlServicePort" value="BankServer"/>
+      <parameter name="className" value="bank.BankServer"/>
+      <parameter name="wsdlPortType" value="BankServer"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation xmlns:operNS="http://bank" xmlns:retNS="http://bank" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="pay" qname="operNS:pay" returnQName="retNS:payReturn" returnType="rtns:string" soapAction="">
+        <parameter xmlns:pns="http://bank" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:rib" type="tns:string"/>
+        <parameter xmlns:pns="http://bank" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:rate" type="tns:double"/>
+      </operation>
+      <parameter name="allowedMethods" value="pay"/>
+
+  </service>
+</deployment>

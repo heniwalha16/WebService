@@ -15,9 +15,10 @@ public class ServerService {
 	            List TutorsList = new ArrayList<Tutor>();
 	            // Create an instance of the server
 	            Service tutorService = new Service(TutorsList);
-	            tutorService.register("Mayssa123", "123", "Mayssa", "Bouzid");
-	            tutorService.register("Anis123", "123", "Anis", "Bouhamed");
-	            tutorService.login("Anis123", "123");
+	            tutorService.register("Mayssa.Bouzid@univ-eiffel.fr", "123", "Mayssa", "Bouzid");
+	            tutorService.register("Anis.Bouhamed@univ-eiffel.fr", "123", "Anis", "Bouhamed");
+	            tutorService.retrieveElement("Mayssa.Bouzid@univ-eiffel.fr").setRate(2000);
+	            tutorService.login("Anis.Bouhamed@univ-eiffel.fr", "123");
 		        // Create a HashMap with Instant keys and values
 		        String instantHashMap= Instant.now().toString();
 
@@ -27,10 +28,10 @@ public class ServerService {
 		        instantHashMap= oneHourAgo.toString() +" to "+ instantHashMap;
 		        HashMap<String,String> avt = new HashMap<>();
 		        avt.put(instantHashMap,"");
-		        tutorService.Tutors.get(0).setAvailibality(avt);
+		        tutorService.Tutors.get(0).setAvailability(avt);
 		        //tutorService.lookTByFirstName("Anis").get(0).setAvailibality(avt);
 	            // Bind the server instance to the RMI registry
-		        System.out.println(tutorService.Tutors.get(0).Availibality.toString());
+		        System.out.println(tutorService.Tutors.get(0).Availability.toString());
 	            Naming.rebind("TutorService", tutorService);
 
 	            System.out.println("TutorServiceServer is running...");

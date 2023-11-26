@@ -11,13 +11,22 @@ import common.IStudent;
 import common.ITutor;
 
 public class Student extends UnicastRemoteObject implements IStudent {
-	String User;
-	String Mdp;
-	public String getUser() throws RemoteException {
-		return User;
+	String Mail="";
+	String Mdp="";
+	String FullName="";
+	String University="";
+	public String getMail() throws RemoteException {
+		return Mail;
 	}
-	public void setUser(String user) throws RemoteException {
-		User = user;
+	public Student(String mail, String mdp, String fullName, String university) throws RemoteException {
+		super();
+		Mail = mail;
+		Mdp = mdp;
+		FullName = fullName;
+		University = university;
+	}
+	public void setMail(String mail) throws RemoteException {
+		Mail = mail;
 	}
 	public String getMdp() throws RemoteException{
 		return Mdp;
@@ -25,8 +34,6 @@ public class Student extends UnicastRemoteObject implements IStudent {
 	public void setMdp(String mdp) throws RemoteException{
 		Mdp = mdp;
 	}
-	String FullName;
-	String University;
 	public Student() throws RemoteException {
 		super();
 		// TODO Auto-generated constructor stub
