@@ -107,7 +107,7 @@ public class Tutor extends UnicastRemoteObject implements ITutor {
 			mail.sendMail();
 		}
 		else 
-			Availability.put("", avt);
+			Availability.put(avt,"" );
 	}
 	public List<String> getWaitingList() throws RemoteException {
 		return WaitingList;

@@ -19,4 +19,5 @@ public interface IService extends Remote {
 	public List<ITutor> lookTByLastName(String firstname) throws RemoteException;
 	public String bookAppointment(String mail, String student, String apt) throws RemoteException;
 	public void FeedBack(String feedback, String mail) throws RemoteException ,IOException;
+	public ITutor retrieveElement(String mail) throws RemoteException ;
 }

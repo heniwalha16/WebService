@@ -123,7 +123,7 @@ public class Service extends UnicastRemoteObject implements IService{
 		return "";
 		
 	}
-	public Tutor retrieveElement(String mail) throws RemoteException {
+	public ITutor retrieveElement(String mail) throws RemoteException {
 		for(Tutor t : Tutors) {
 			 if (t.getMail().equals(mail))
 				 return t;
