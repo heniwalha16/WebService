@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
 
+import common.ISServicetudents;
 import common.ITutor;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -21,7 +22,6 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import student.StudentService;
 
 public class cardViewController implements Initializable{
 	@FXML
@@ -81,7 +81,7 @@ public class cardViewController implements Initializable{
 	@FXML
     public void passToBook(ActionEvent event) {
         try {
-        	StudentService sts = new StudentService();
+        	ISServicetudents sts = null;
             // Load the new FXML file
             FXMLLoader loader = new FXMLLoader(getClass().getResource("BookApp.fxml"));
             Parent root = loader.load();
