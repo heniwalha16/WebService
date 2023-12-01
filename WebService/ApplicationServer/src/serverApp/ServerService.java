@@ -2,8 +2,8 @@ package serverApp;
 
 import java.rmi.*;
 import java.rmi.registry.LocateRegistry;
-import java.time.Instant;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
@@ -29,27 +29,52 @@ public class ServerService extends Application{
         primaryStage.setScene(scene);
         primaryStage.show();
 	}
+	private static HashMap<String, String> createAvailabilityMap(String... slots) {
+        HashMap<String, String> availability = new HashMap<>();
+        for (int i = 0; i < slots.length; i += 2) {
+            availability.put(slots[i], slots[i + 1]);
+        }
+        return availability;
+    }
 	 public static void main(String[] args) {
 	        try {
 	            // Create the registry at default port 1099
 	            LocateRegistry.createRegistry(1099);
-	            List TutorsList = new ArrayList<Tutor>();
+	            List<Tutor> tutors = new ArrayList<>();
+
+	            // Données fictives pour trois Tutors
+	            String[] firstNames = {"Alice", "Bob", "Charlie"};
+	            String[] lastNames = {"Smith", "Johnson", "Williams"};
+	            String[] mails = {"alice.smith@univ-eiffel.fr", "bob.johnson@univ-eiffel.fr", "charlie.williams@univ-eiffel.fr"};
+	            String[] passwords = {"mdpAlice", "mdpBob", "mdpCharlie"};
+	            double[] ratings = {4.5, 3.8, 4.2};
+	            double[] rates = {60.0, 45.0, 50.0};
+
+	            List<String>[] waitingLists = new List[]{
+	                    Arrays.asList("Heni Walha <heni.walha@edu.univ-eiffel.fr>", "John Doe <john.doe@edu.univ-eiffel.fr>"),
+	                    Arrays.asList("Emma Johnson <emma.johnson@edu.univ-eiffel.fr>", "Michael Smith <michael.smith@edu.univ-eiffel.fr>"),
+	                    Arrays.asList("Sophia Williams <sophia.williams@edu.univ-eiffel.fr>", "William Brown <william.brown@edu.univ-eiffel.fr>")
+	            };
+
+	            List<String>[] skills = new List[]{
+	                    Arrays.asList("Java", "Python", "Machine Learning"),
+	                    Arrays.asList("C++", "JavaScript"),
+	                    Arrays.asList("Data Science", "SQL")
+	            };
+
+	            HashMap<String, String>[] availabilities = new HashMap[]{
+	                    createAvailabilityMap("2023-12-01 09:00 to 10:00", "Heni Walha <heni.walha@edu.univ-eiffel.fr>", "2023-12-02 14:00 to 16:00", "John Doe <john.doe@edu.univ-eiffel.fr>"),
+	                    createAvailabilityMap("2023-12-03 10:00 to 12:00", "Emma Johnson <emma.johnson@edu.univ-eiffel.fr>", "2023-12-04 11:00 to 12:00", "Michael Smith <michael.smith@edu.univ-eiffel.fr>"),
+	                    createAvailabilityMap("2023-12-05 08:00 to 10:00", "Sophia Williams <sophia.williams@edu.univ-eiffel.fr>", "2023-12-06 09:00 to 11:00", "William Brown <william.brown@edu.univ-eiffel.fr>")
+	            };
+
+	            for (int i = 0; i < 3; i++) {
+	                Tutor tutor = new Tutor(mails[i], passwords[i], firstNames[i], lastNames[i], ratings[i], rates[i], waitingLists[i], skills[i], availabilities[i]);
+	                tutors.add(tutor);
+	            }
 	            // Create an instance of the server
-	            Service tutorService = new Service(TutorsList);
-	            tutorService.register("Mayssa.Bouzid@univ-eiffel.fr", "123", "Mayssa", "Bouzid");
-	            tutorService.register("Anis.Bouhamed@univ-eiffel.fr", "123", "Anis", "Bouhamed");
-	            tutorService.retrieveElement("Mayssa.Bouzid@univ-eiffel.fr").setRate(2000);
-	            tutorService.retrieveElement("Mayssa.Bouzid@univ-eiffel.fr").setRating(4);
-	            tutorService.login("Anis.Bouhamed@univ-eiffel.fr", "123");
-		        
-		        // Put the entries in the HashMap
-		        String instantHashMap= "2023-11-29 9:00" +" to "+ "10:00";
-		        HashMap<String,String> avt = new HashMap<>();
-		        avt.put(instantHashMap,"");
-		        tutorService.Tutors.get(0).setAvailability(avt);
-		        //tutorService.lookTByFirstName("Anis").get(0).setAvailibality(avt);
-	            // Bind the server instance to the RMI registry
-		        System.out.println(tutorService.Tutors.get(0).Availability.toString());
+	            Service tutorService = new Service(tutors);
+
 	            Naming.rebind("TutorService", tutorService);
 	            launch(args);
 	            System.out.println("TutorServiceServer is running...");

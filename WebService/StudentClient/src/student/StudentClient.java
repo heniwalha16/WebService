@@ -1,35 +1,64 @@
 package student;
 
 import java.rmi.Naming;
+import java.rmi.registry.LocateRegistry;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.rmi.*;
 import common.IService;
 import common.ITutor;
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 
-public class StudentClient {
+
+public class StudentClient extends Application{
+	@Override
+	public void start(Stage primaryStage) throws Exception {
+		// TODO Auto-generated method stub
+		// Load the FXML file
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../gui/register.fxml"));
+        Parent root = loader.load();
+
+        // Set up the scene
+        Scene scene = new Scene(root);
+
+        // Set up the stage
+        primaryStage.setTitle("Student Mangement Application");
+        primaryStage.setScene(scene);
+        primaryStage.show();
+	}
 	public static void main(String[] args) {
-		 try {
-		       
-	    String instantHashMap;
+		try {
+			List<Student> students = new ArrayList<>();
 
-		        
-		Instant oneHourAgo = Instant.now().minusSeconds(3600);
+        // Real data for three students
+        String[] mails = {
+            "heni.walha@edu.univ-eiffel.fr",
+            "emma.johnson@edu.univ-eiffel.fr",
+            "michael.smith@edu.univ-eiffel.fr"
+        };
+        String[] passwords = {"heni123", "emma456", "michael789"};
+        String[] fullNames = {
+            "Heni Walha",
+            "Emma Johnson",
+            "Michael Smith"
+        };
 
-		
-		instantHashMap=oneHourAgo.toString()+" to "+ Instant.now().toString();
-		IService tubalaa = (IService) Naming.lookup("rmi://localhost/TutorService");
-		List t=new ArrayList<ITutor>();
-		t=tubalaa.lookTByName("Anis","Bouhamed");
-		System.out.println(((ITutor)t.stream().findFirst().get()).getLastname());
-		t=tubalaa.lookTByLastName("Bouhamed");
-		System.out.println(((ITutor)t.stream().findFirst().get()).getLastname());
-		t=tubalaa.lookTByFirstName("Anis");
-		System.out.println(((ITutor)t.stream().findFirst().get()).getLastname());
-		tubalaa.bookAppointment("Mayssa.Bouzid@univ-eiffel.fr","Heni Walha< heni.walha@esprit.tn >","2023-11-22T10:24:02.670985600Z to 2023-11-22T11:24:02.660999800Z");	 
-		System.out.println("aha");
+        for (int i = 0; i < 3; i++) {
+           
+                Student student = new Student(mails[i], passwords[i], fullNames[i], "Gustave Eiffel");
+                students.add(student);}
+        StudentService studentService = new StudentService(students);
+        
+		launch(args);
 		 }
 		 catch (Exception e) {
 		 System.out.println("Trouble " + e);

@@ -3,6 +3,7 @@ package serverApp;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -24,6 +25,20 @@ public class Tutor extends UnicastRemoteObject implements ITutor {
 	public Tutor() throws RemoteException {
 		super();
 		// TODO Auto-generated constructor stub
+	}
+	public Tutor(String mail, String mdp, String firstname, String lastname, double rating, double rate,
+			List<String> waitingList, List<String> skills, HashMap<String, String> availability)
+			throws RemoteException {
+		super();
+		Mail = mail;
+		Mdp = mdp;
+		Firstname = firstname;
+		Lastname = lastname;
+		this.rating = rating;
+		this.rate = rate;
+		WaitingList = waitingList;
+		Skills = skills;
+		Availability = availability;
 	}
 	public Tutor(String mail, String mdp) throws RemoteException {
 		super();
@@ -94,6 +109,17 @@ public class Tutor extends UnicastRemoteObject implements ITutor {
 	public void setAvailability(HashMap< String,String >availibality)throws RemoteException {
 		Availability = availibality;
 	}
+	public HashMap<String, String> getEmptyAvailability() throws RemoteException {
+        HashMap<String, String> emptyAvailability = new HashMap<>();
+
+        for (Map.Entry<String, String> entry : Availability.entrySet()) {
+            if (entry.getValue().isEmpty()) {
+                emptyAvailability.put(entry.getKey(), entry.getValue());
+            }
+        }
+
+        return emptyAvailability;
+    }
 	public void addAvailability(String avt)throws RemoteException {
 		if(!WaitingList.isEmpty()) {
 	        // Define a regular expression pattern for extracting email addresses

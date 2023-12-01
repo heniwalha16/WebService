@@ -18,8 +18,8 @@ public class sendMail {
 	    public static String subject;
 
 	    public sendMail(String contenu, String destination, String subject) {
-	        mailUsername = "anis.bouhamed@esprit.tn";
-	        mailPassword = "213JMT7558a";
+	        mailUsername = "gustavetutorservice@gmail.com";
+	        mailPassword = "aony dgiw tlnr arzk";
 	        this.contenu = contenu;
 	        this.destination = destination;
 	        this.subject = subject;

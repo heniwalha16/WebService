@@ -6,6 +6,7 @@ import java.util.List;
 public interface ITutor extends Remote {
 	public String getMdp() throws RemoteException;
 	public void setMdp(String mdp) throws RemoteException;
+	public String getFirstname() throws RemoteException;
 	public void setFirstname(String firstname)throws RemoteException;
 	public String getLastname()throws RemoteException;
 	public void setLastname(String lastname)throws RemoteException;
@@ -24,4 +25,5 @@ public interface ITutor extends Remote {
 	public void setNbFeedback(double nbFeedback)throws RemoteException ;
 	public double getRating() throws RemoteException ;
 	public void setRating(double rating) throws RemoteException;
+	public HashMap<String, String> getEmptyAvailability() throws RemoteException;
 }

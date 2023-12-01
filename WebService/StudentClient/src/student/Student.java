@@ -1,53 +1,51 @@
 package student;
 
+
 import java.rmi.RemoteException;
-import java.rmi.server.UnicastRemoteObject;
-import java.time.Instant;
-import java.util.HashMap;
-import java.util.List;
 
-import common.IService;
+
+
 import common.IStudent;
-import common.ITutor;
 
-public class Student extends UnicastRemoteObject implements IStudent {
+
+public class Student implements IStudent {
 	String Mail="";
 	String Mdp="";
 	String FullName="";
 	String University="";
-	public String getMail() throws RemoteException {
+	public String getMail() {
 		return Mail;
 	}
-	public Student(String mail, String mdp, String fullName, String university) throws RemoteException {
+	public Student(String mail, String mdp, String fullName, String university)  {
 		super();
 		Mail = mail;
 		Mdp = mdp;
 		FullName = fullName;
 		University = university;
 	}
-	public void setMail(String mail) throws RemoteException {
+	public void setMail(String mail)  {
 		Mail = mail;
 	}
-	public String getMdp() throws RemoteException{
+	public String getMdp() {
 		return Mdp;
 	}
-	public void setMdp(String mdp) throws RemoteException{
+	public void setMdp(String mdp){
 		Mdp = mdp;
 	}
-	public Student() throws RemoteException {
+	public Student() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public String getFullName()throws RemoteException {
+	public String getFullName() {
 		return FullName;
 	}
-	public void setFullName(String fullName)throws RemoteException {
+	public void setFullName(String fullName) {
 		FullName = fullName;
 	}
-	public String getUniversity() throws RemoteException {
+	public String getUniversity(){
 		return University;
 	}
-	public void setUniversity(String university)throws RemoteException {
+	public void setUniversity(String university) {
 		University = university;
 	}
 }

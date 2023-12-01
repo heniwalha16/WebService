@@ -1,24 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="341.0" prefWidth="608.0" style="-fx-background-color: #e6e6fa;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.cardViewController">
    <children>
-      <AnchorPane prefHeight="403.0" prefWidth="600.0">
+      <AnchorPane prefHeight="343.0" prefWidth="605.0" style="-fx-background-color: #FFFFFF;">
          <children>
-            <Label layoutX="246.0" layoutY="34.0" prefHeight="40.0" prefWidth="75.0" text="Full Name :" />
-            <Label layoutX="237.0" layoutY="180.0" prefHeight="40.0" prefWidth="75.0" text="Rating:" />
-            <Label layoutX="246.0" layoutY="83.0" prefHeight="40.0" prefWidth="75.0" text="Skills :" />
-            <Label layoutX="237.0" layoutY="136.0" prefHeight="40.0" prefWidth="75.0" text="Availibilty :" />
-            <Label layoutX="359.0" layoutY="45.0" text="Label" />
-            <Label layoutX="373.0" layoutY="94.0" text="Label" />
-            <Label layoutX="373.0" layoutY="147.0" text="Label" />
-            <Label layoutX="382.0" layoutY="189.0" text="Label" />
-            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="14.0" layoutY="48.0" pickOnBounds="true" preserveRatio="true" />
+            <Label fx:id="full_name" layoutX="259.0" layoutY="24.0" prefHeight="40.0" prefWidth="75.0" text="Full Name :" textFill="#004365">
+               <font>
+                  <Font size="13.0" />
+               </font></Label>
+            <Label fx:id="rating" layoutX="266.0" layoutY="284.0" prefHeight="40.0" prefWidth="75.0" text="Rating:" textFill="#004365">
+               <font>
+                  <Font size="13.0" />
+               </font></Label>
+            <Label fx:id="Skills" layoutX="261.0" layoutY="76.0" prefHeight="40.0" prefWidth="75.0" text="Skills :" textFill="#004365">
+               <font>
+                  <Font size="13.0" />
+               </font></Label>
+            <Label fx:id="availability" layoutX="261.0" layoutY="158.0" prefHeight="40.0" prefWidth="75.0" text="Availabilties :" textFill="#004365">
+               <font>
+                  <Font size="13.0" />
+               </font></Label>
+            <ImageView fx:id="img" fitHeight="150.0" fitWidth="184.0" layoutX="28.0" layoutY="39.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@./Taylor.png" />
+               </image></ImageView>
+            <Button fx:id="Button_bookApp" layoutX="48.0" layoutY="264.0" mnemonicParsing="false" onAction="#passToBook" prefHeight="25.0" prefWidth="139.0" style="-fx-background-color: #004365;" text="Book Appoinetment" textFill="WHITE" />
+            <ProgressBar fx:id="rating_bar" cache="true" layoutX="344.0" layoutY="295.0" prefHeight="18.0" prefWidth="184.0" progress="0.6" />
+            <ListView fx:id="List_availability" layoutX="345.0" layoutY="167.0" prefHeight="110.0" prefWidth="184.0" style="-fx-border-color: #004365;" />
+            <ListView fx:id="List_skills" layoutX="344.0" layoutY="77.0" prefHeight="74.0" prefWidth="184.0" style="-fx-border-color: #004365;" />
+            <Text fx:id="full_name_txt" layoutX="359.0" layoutY="49.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mathieu Hugo" wrappingWidth="88.33331298828125" />
+            <Label layoutX="47.0" layoutY="213.0" text="Mail :" textFill="#004365">
+               <font>
+                  <Font size="13.0" />
+               </font></Label>
+            <Text fx:id="mail" layoutX="88.0" layoutY="227.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="210.33331298828125" />
+            <Button fx:id="gfdbk" layoutX="47.0" layoutY="300.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="139.0" style="-fx-background-color: #004365;" text="Give Feedback" textFill="WHITE" />
          </children>
       </AnchorPane>
    </children>

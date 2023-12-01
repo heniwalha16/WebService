@@ -8,53 +8,61 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="766.0" prefWidth="1065.0" style="-fx-border-color: lightblue;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.tutorController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="670.0" prefWidth="1065.0" style="-fx-border-color: lightblue;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.tutorController">
 	<children>
-		<Text fill="#636db7" layoutX="446.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tutor" textAlignment="CENTER" wrappingWidth="194.34759521484375">
+		<Text fill="#004365" layoutX="446.0" layoutY="53.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tutor" textAlignment="CENTER" wrappingWidth="194.34759521484375">
 			<font>
-				<Font name="System Bold Italic" size="33.0" />
+				<Font name="System Bold Italic" size="42.0" />
 			</font>
 		</Text>
-		<Text layoutX="31.0" layoutY="101.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Availability" wrappingWidth="82.95901489257812">
-			<font>
-				<Font size="16.0" />
-			</font>
-		</Text>
-		<DatePicker fx:id="availability_calendar" layoutX="28.0" layoutY="140.0" />
-		<Text layoutX="641.0" layoutY="158.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Skill" wrappingWidth="75.95901489257812">
+		<Text layoutX="53.0" layoutY="97.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Availability :" wrappingWidth="113.95900726318354">
 			<font>
 				<Font size="16.0" />
 			</font>
 		</Text>
-		<Text layoutX="565.0" layoutY="593.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Rating" wrappingWidth="75.95901489257812">
+		<DatePicker fx:id="availability_calendar" layoutX="87.0" layoutY="128.0" />
+		<Text layoutX="686.0" layoutY="176.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Skill" wrappingWidth="75.95901489257812">
 			<font>
 				<Font size="16.0" />
 			</font>
 		</Text>
-		<Text layoutX="35.0" layoutY="543.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Waiting List" wrappingWidth="113.9590072631836">
+		<Text layoutX="640.0" layoutY="537.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Rating" wrappingWidth="75.95901489257812">
 			<font>
 				<Font size="16.0" />
 			</font>
 		</Text>
-		<ListView fx:id="list_skills" layoutX="662.0" layoutY="319.0" prefHeight="178.0" prefWidth="344.0" style="-fx-border-color: lightblue;" />
-		<TableView fx:id="table_availability" layoutX="32.0" layoutY="203.0" prefHeight="313.0" prefWidth="562.0">
+		<Text layoutX="30.0" layoutY="484.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Waiting List" wrappingWidth="113.9590072631836">
+			<font>
+				<Font size="16.0" />
+			</font>
+		</Text>
+		<ListView fx:id="list_skills" layoutX="662.0" layoutY="284.0" prefHeight="163.0" prefWidth="344.0" style="-fx-border-color: #004365;" />
+		<TableView fx:id="table_availability" layoutX="32.0" layoutY="216.0" prefHeight="232.0" prefWidth="562.0" style="-fx-border-color: #004365;">
 			<columns>
 				<TableColumn fx:id="timeColumn" prefWidth="257.0" text="Time" />
 				<TableColumn fx:id="studentColumn" prefWidth="304.0" text="Student" />
 			</columns>
 		</TableView>
-		<TextField fx:id="skill" layoutX="750.0" layoutY="141.0" />
-		<Button fx:id="button_add_skill" layoutX="764.0" layoutY="244.0" mnemonicParsing="false" onAction="#addSk" prefHeight="25.0" prefWidth="120.0" text="Add Skill" />
-		<ListView fx:id="waiting_list" layoutX="35.0" layoutY="562.0" prefHeight="178.0" prefWidth="362.0" style="-fx-border-color: lightblue;" />
-		<ComboBox fx:id="start" layoutX="216.0" layoutY="140.0" prefHeight="25.0" prefWidth="28.0" />
-		<ComboBox fx:id="end" layoutX="288.0" layoutY="141.0" prefHeight="25.0" prefWidth="49.0" />
-		<ProgressBar fx:id="rate_bar" layoutX="693.0" layoutY="569.0" prefHeight="34.0" prefWidth="282.0" progress="0.0" />
-      <Button fx:id="addava" layoutX="395.0" layoutY="140.0" mnemonicParsing="false" onAction="#addAv" text="Add Availability" />
-      <Text layoutX="226.0" layoutY="122.0" strokeType="OUTSIDE" strokeWidth="0.0" text="From " />
-      <Text layoutX="301.0" layoutY="122.0" strokeType="OUTSIDE" strokeWidth="0.0" text="to" />
+		<TextField fx:id="skill" layoutX="759.0" layoutY="157.0" />
+		<Button fx:id="button_add_skill" layoutX="759.0" layoutY="204.0" mnemonicParsing="false" onAction="#addSk" prefHeight="34.0" prefWidth="149.0" style="-fx-background-color: #004365;" text="Add Skill" textFill="WHITE" />
+		<ListView fx:id="waiting_list" layoutX="32.0" layoutY="497.0" prefHeight="134.0" prefWidth="562.0" style="-fx-border-color: #004365;" />
+		<ComboBox fx:id="start" layoutX="352.0" layoutY="128.0" prefHeight="25.0" prefWidth="28.0" />
+		<ComboBox fx:id="end" layoutX="468.0" layoutY="130.0" prefHeight="25.0" prefWidth="49.0" />
+		<ProgressBar fx:id="rate_bar" layoutX="724.0" layoutY="514.0" prefHeight="34.0" prefWidth="282.0" progress="0.0" />
+      <Button fx:id="addava" layoutX="230.0" layoutY="170.0" mnemonicParsing="false" onAction="#addAv" prefHeight="34.0" prefWidth="149.0" style="-fx-background-color: #004365;" text="Add Availability" textFill="WHITE" />
+      <Text layoutX="305.0" layoutY="146.0" strokeType="OUTSIDE" strokeWidth="0.0" text="From " />
+      <Text layoutX="437.0" layoutY="146.0" strokeType="OUTSIDE" strokeWidth="0.0" text="To" />
+      <Text layoutX="41.0" layoutY="145.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date" />
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="865.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@./Taylor.jpg" />
+         </image>
+      </ImageView>
 	</children>
 </AnchorPane>

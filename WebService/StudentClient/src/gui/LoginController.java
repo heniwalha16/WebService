@@ -5,6 +5,8 @@ import java.net.URL;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import common.IService;
@@ -19,6 +21,8 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import student.Student;
+import student.StudentService;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -44,19 +48,18 @@ public class LoginController implements Initializable{
 	}
 	@FXML
     private void Login(ActionEvent event)throws IOException,RemoteException, NotBoundException  {
-		IService tuts = (IService) Naming.lookup("rmi://localhost/TutorService");
-		System.out.println(tuts.login(mail.getText(), pwd.getText()));
-		if(tuts.login(mail.getText(), pwd.getText()).equals("User Not Found")) {
-		message.setText(tuts.login(mail.getText(), pwd.getText()));}
+		StudentService sts = new StudentService();
+		System.out.println(sts.login(mail.getText(), pwd.getText()));
+		if(sts.login(mail.getText(), pwd.getText()).equals("User Not Found")) {
+		message.setText(sts.login(mail.getText(), pwd.getText()));}
 		else {
 		Mail=mail.getText();
-		Naming.rebind("TutorService", tuts);
 		try {
             // Load the new FXML file
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("tutor.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("student.fxml"));
             Parent root = loader.load();
-            tutorController tutorController = loader.getController();
-            tutorController.setData(tuts.retrieveElement(Mail));
+            studentController studentController = loader.getController();
+            studentController.setData(sts.retrieveElement(Mail));
             // Set up the scene
             Scene scene = new Scene(root);
 

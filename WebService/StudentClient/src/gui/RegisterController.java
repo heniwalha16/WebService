@@ -2,12 +2,10 @@ package gui;
 
 import java.io.IOException;
 import java.net.URL;
-import java.rmi.Naming;
 import java.rmi.NotBoundException;
-import java.rmi.RemoteException;
 import java.util.ResourceBundle;
 
-import common.IService;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -19,10 +17,13 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import student.StudentService;
 
 
 
-public class RegisterController implements Initializable {
+
+public class RegisterController implements Initializable{
+	
 	@FXML
 	Button registerbtn;
 	@FXML
@@ -32,9 +33,9 @@ public class RegisterController implements Initializable {
 	@FXML
 	PasswordField pwd;
 	@FXML
-	TextField lastname;
+	TextField uni;
 	@FXML
-	TextField firstname;
+	TextField fullname;
 	@FXML
 	Text message;
 	String Mail="";
@@ -44,23 +45,21 @@ public class RegisterController implements Initializable {
 		
 	}
 	@FXML
-    private void Register(ActionEvent event)throws IOException, RemoteException,NotBoundException  {
-		IService tuts = (IService) Naming.lookup("rmi://localhost/TutorService");
-		String result=tuts.register(mail.getText(), pwd.getText(), firstname.getText(), lastname.getText());
+    private void Register(ActionEvent event)throws IOException, NotBoundException {
+		
+		StudentService sts = new StudentService();
+		String result=sts.register(mail.getText(), pwd.getText(), fullname.getText(), uni.getText());
 		if(result.equals("This account is already existed"))
 		{
-		message.setText(tuts.register(mail.getText(), pwd.getText(), firstname.getText(), lastname.getText()));}
+		message.setText(sts.register(mail.getText(), pwd.getText(), fullname.getText(), uni.getText()));}
 		else {
 		Mail=mail.getText();
-		
-		Naming.rebind("TutorService", tuts);
-		
 		try {
             // Load the new FXML file
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("tutor.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("student.fxml"));
             Parent root = loader.load();
-            tutorController tutorController = loader.getController();
-            tutorController.setData(tuts.retrieveElement(Mail));
+            studentController StudentController = loader.getController();
+            StudentController.setData(sts.retrieveElement(Mail));
             // Set up the scene
             Scene scene = new Scene(root);
 
