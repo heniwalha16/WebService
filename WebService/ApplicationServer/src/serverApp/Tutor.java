@@ -122,15 +122,15 @@ public class Tutor extends UnicastRemoteObject implements ITutor {
     }
 	public void addAvailability(String avt)throws RemoteException {
 		if(!WaitingList.isEmpty()) {
-	        // Define a regular expression pattern for extracting email addresses
-	        String regex = "([a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,})";
-	        Pattern pattern = Pattern.compile(regex);
-	        Matcher matcher = pattern.matcher(WaitingList.get(0));
-	        String extractedEmail = matcher.group(1);
+			int startIndex = WaitingList.get(0).indexOf('<');
+	        String extractedEmail =WaitingList.get(0).substring(startIndex + 1, WaitingList.get(0).length() - 1);
 	        System.out.println(extractedEmail);
 			Availability.put(WaitingList.get(0), avt);
-			sendMail mail = new sendMail("Finally the waiting time is over your asked tutor is now available. You have been affected to the Tutor"+this.Firstname + this.Lastname+" from "+avt,extractedEmail,"Tutor's Availability");
-			mail.sendMail();
+			String body="Finally the waiting time is over your asked tutor is now available. You have been affected to the Tutor"+this.Firstname + this.Lastname+" from "+avt;
+			System.out.println(body);
+			WaitingList.remove(0);
+			//sendMail mail = new sendMail(body,extractedEmail,"Tutor's Availability");
+			//mail.sendMail();
 		}
 		else 
 			Availability.put(avt,"" );

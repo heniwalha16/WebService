@@ -8,7 +8,34 @@
 package student;
 
 public class Tutors  implements java.io.Serializable {
+    private student.Tutor[] t;
+
     public Tutors() {
+    }
+
+    public Tutors(
+           student.Tutor[] t) {
+           this.t = t;
+    }
+
+
+    /**
+     * Gets the t value for this Tutors.
+     * 
+     * @return t
+     */
+    public student.Tutor[] getT() {
+        return t;
+    }
+
+
+    /**
+     * Sets the t value for this Tutors.
+     * 
+     * @param t
+     */
+    public void setT(student.Tutor[] t) {
+        this.t = t;
     }
 
     private java.lang.Object __equalsCalc = null;
@@ -22,7 +49,10 @@ public class Tutors  implements java.io.Serializable {
         }
         __equalsCalc = obj;
         boolean _equals;
-        _equals = true;
+        _equals = true && 
+            ((this.t==null && other.getT()==null) || 
+             (this.t!=null &&
+              java.util.Arrays.equals(this.t, other.getT())));
         __equalsCalc = null;
         return _equals;
     }
@@ -34,6 +64,17 @@ public class Tutors  implements java.io.Serializable {
         }
         __hashCodeCalc = true;
         int _hashCode = 1;
+        if (getT() != null) {
+            for (int i=0;
+                 i<java.lang.reflect.Array.getLength(getT());
+                 i++) {
+                java.lang.Object obj = java.lang.reflect.Array.get(getT(), i);
+                if (obj != null &&
+                    !obj.getClass().isArray()) {
+                    _hashCode += obj.hashCode();
+                }
+            }
+        }
         __hashCodeCalc = false;
         return _hashCode;
     }
@@ -44,6 +85,13 @@ public class Tutors  implements java.io.Serializable {
 
     static {
         typeDesc.setXmlType(new javax.xml.namespace.QName("http://student", "Tutors"));
+        org.apache.axis.description.ElementDesc elemField = new org.apache.axis.description.ElementDesc();
+        elemField.setFieldName("t");
+        elemField.setXmlName(new javax.xml.namespace.QName("http://student", "t"));
+        elemField.setXmlType(new javax.xml.namespace.QName("http://student", "Tutor"));
+        elemField.setNillable(true);
+        elemField.setItemQName(new javax.xml.namespace.QName("http://student", "item"));
+        typeDesc.addFieldDesc(elemField);
     }
 
     /**

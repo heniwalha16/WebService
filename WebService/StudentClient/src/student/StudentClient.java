@@ -56,8 +56,10 @@ public class StudentClient extends Application{
            
                 Student student = new Student(mails[i], passwords[i], fullNames[i], "Gustave Eiffel");
                 students.add(student);}
-        StudentService studentService = new StudentService(students);
         
+        StudentService studentService = new StudentService(students);
+        //IService tuts = (IService) Naming.lookup("rmi://localhost/TutorService");
+        //System.out.println(tuts.bookAppointment("alice.smith@univ-eiffel.fr", "hiha3", "2023-12-01 9:00 to 10:00"));
 		launch(args);
 		 }
 		 catch (Exception e) {

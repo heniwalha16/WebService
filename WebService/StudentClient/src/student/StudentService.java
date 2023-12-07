@@ -80,11 +80,12 @@ public class StudentService  implements ISServicetudents{
 
 			 }
 			if (b==false) {
-				Student std = null;
-					std = new Student( mail,  mdp, fullName,Uni);
+				Student std = new Student( mail,  mdp, fullName,Uni);
 
 				students.add(std);
-				writeStudentsToFile(students,"student_data.txt");
+				List <Student> studentToADD=new ArrayList<>();
+				studentToADD.add(std);
+				writeStudentsToFile(studentToADD,"student_data.txt");
 				return "Registred succefuly";
 			}
 			return "";
@@ -105,12 +106,13 @@ public class StudentService  implements ISServicetudents{
 			return "";
 			
 		}
-	 public IStudent retrieveElement(String mail) {
+	 public Student retrieveElementt(String mail) {
 		 ReadAndAffectData();
 			for(Student st : students) {
-				 if (st.getMail().equals(mail))
+				 if (st.getMail().equals(mail)) {
+					 System.out.println("ahou l9itou");
 					 return st;
-				} 
+				} }
 			Student tut=new Student();
 			return tut ;
 		}

@@ -5,7 +5,10 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
@@ -15,6 +18,8 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
+
 import java.io.IOException;
 import java.net.URL;
 import java.rmi.Naming;
@@ -22,15 +27,19 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
+
 
 import common.IService;
 import common.ITutor;
 
 public class tutorController implements Initializable {
 	String mail="";
+	@FXML
+	Button btn_back;
 
 	@FXML
     private Text tutorText;
@@ -135,7 +144,7 @@ public class tutorController implements Initializable {
             // Convert the LocalDate to a string using DateTimeFormatter
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
             String dateString = selectedDate.format(formatter);
-            dateString=dateString+start.getValue()+" to "+end.getValue();
+            dateString=dateString+" "+start.getValue()+" to "+end.getValue();
 		tuts.retrieveElement(mail).addAvailability(dateString);
 		List<String> waitinglist = tuts.retrieveElement(mail).getWaitingList(); // Assuming getSkills() returns an ArrayList<String>
 		 ObservableList<Map.Entry<String, String>> data = FXCollections.observableArrayList(tuts.retrieveElement(mail).getAvailability().entrySet());
@@ -157,7 +166,10 @@ public class tutorController implements Initializable {
 	public void addSk(ActionEvent event) throws IOException, RemoteException, NotBoundException {
 		IService tuts = (IService) Naming.lookup("rmi://localhost/TutorService");
         if (skill.getText() != null) {
-        List<String> new_l=tuts.retrieveElement(mail).getSkills();
+        	List<String> new_l = new ArrayList<>(tuts.retrieveElement(mail).getSkills());
+        System.out.println(new_l);
+        System.out.println(skill.getText());
+
         new_l.add(skill.getText());
 		tuts.retrieveElement(mail).setSkills(new_l);
 
@@ -170,4 +182,27 @@ public class tutorController implements Initializable {
 		list_skills.setItems(skillsObservableList);
 		Naming.rebind("TutorService", tuts);}
 	}
+	@FXML
+    public void back(ActionEvent event) throws IOException {
+        // Load the new FXML file
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("login.fxml"));
+        Parent root = loader.load();
+     
+        //Parent root = loader.load();
+        // Set up the scene
+        Scene scene = new Scene(root);
+
+        // Set up the stage
+        Stage stage = new Stage();
+        stage.setTitle("Login Tuor JavaFX Application");
+        stage.setScene(scene);
+
+        // Close the current stage
+        Stage currentStage = (Stage) btn_back.getScene().getWindow();
+        currentStage.close();
+
+        // Show the new stage
+        stage.show();
+    }
+	
 }

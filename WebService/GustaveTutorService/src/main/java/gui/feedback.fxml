@@ -7,18 +7,20 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #004365;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #004365;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.FeedbackController">
    <children>
       <TextArea fx:id="fdbk_text" layoutX="57.0" layoutY="121.0" prefHeight="197.0" prefWidth="481.0" />
       <Label layoutX="69.0" layoutY="86.0" text="Give your feedback to the tutor" textFill="WHITE">
          <font>
             <Font size="14.0" />
          </font></Label>
-      <Button fx:id="send" layoutX="243.0" layoutY="340.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="127.0" style="-fx-background-color: #FFFFFF;" text="Send" />
+      <Button fx:id="send" layoutX="411.0" layoutY="340.0" mnemonicParsing="false" onAction="#sendFeedBack" prefHeight="25.0" prefWidth="127.0" style="-fx-background-color: #FFFFFF;" text="Send" />
       <Text fill="WHITE" layoutX="213.0" layoutY="49.0" strokeType="OUTSIDE" strokeWidth="0.0" text="FeedBack">
          <font>
             <Font name="Arial Black" size="32.0" />
          </font>
       </Text>
+      <Button fx:id="back_btn" layoutX="57.0" layoutY="340.0" mnemonicParsing="false" onAction="#back" prefHeight="25.0" prefWidth="127.0" style="-fx-background-color: #FFFFFF;" text="Back" />
+      <Text fx:id="message" fill="WHITE" layoutX="197.0" layoutY="357.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="200.13671875" />
    </children>
 </AnchorPane>

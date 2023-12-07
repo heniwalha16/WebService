@@ -22,7 +22,7 @@ public class ExternalStudentServiceLocator extends org.apache.axis.client.Servic
     }
 
     // Use to get a proxy class for ExternalStudent
-    private java.lang.String ExternalStudent_address = "http://localhost:8080/ExternalStudentWebService/services/ExternalStudent";
+    private java.lang.String ExternalStudent_address = "http://localhost:8070/ExternalStudentWebService/services/ExternalStudent";
 
     public java.lang.String getExternalStudentAddress() {
         return ExternalStudent_address;

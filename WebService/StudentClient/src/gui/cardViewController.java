@@ -50,7 +50,13 @@ public class cardViewController implements Initializable{
 	
 	public void setData(ITutor t,String Mail,String fullName) throws RemoteException {
 		// TODO Auto-generated method stub
+		System.out.println("retrieved cardview:"+Mail);
+        System.out.println("retrieved cardview::"+fullName);
 		this.t=t;
+		this.Mail=Mail;
+		this.fullName=fullName;
+		 System.out.println("Setted cardview:"+this.Mail);
+         System.out.println("Setted cardview :"+fullName);
 		full_name_txt.setText(t.getFirstname() + " " + t.getLastname());
 		mail.setText(t.getMail());
 		// Assuming List_skills is a ListView<String>
@@ -86,8 +92,15 @@ public class cardViewController implements Initializable{
             FXMLLoader loader = new FXMLLoader(getClass().getResource("BookApp.fxml"));
             Parent root = loader.load();
             BookAppController BookappController = loader.getController();
-            BookappController.setData(sts.retrieveElement(Mail).getFullName()+'<'+sts.retrieveElement(Mail).getMail()+'>',t.getMail(),timeList);
+           
+            System.out.println("Pass to book "+Mail);
+            System.out.println("Pass to book "+sts.retrieveElementt(Mail).getFullName());
+            System.out.println("Pass to book "+sts.retrieveElementt(Mail).getMail());
+            String studentName=sts.retrieveElementt(Mail).getFullName()+'<'+sts.retrieveElementt(Mail).getMail()+'>';
+            System.out.println("Pass to book "+studentName);
+            BookappController.setData(studentName,t.getMail(),timeList,Mail);
             // Set up the scene
+            
             Scene scene = new Scene(root);
 
             // Set up the stage
@@ -111,7 +124,8 @@ public class cardViewController implements Initializable{
             // Load the new FXML file
             FXMLLoader loader = new FXMLLoader(getClass().getResource("feedback.fxml"));
             Parent root = loader.load();
-            
+            FeedbackController feedbackC=loader.getController();
+            feedbackC.sendData(t.getMail(),Mail);
             // Set up the scene
             Scene scene = new Scene(root);
 
@@ -121,7 +135,7 @@ public class cardViewController implements Initializable{
             stage.setScene(scene);
 
             // Close the current stage
-            Stage currentStage = (Stage) Button_bookApp.getScene().getWindow();
+            Stage currentStage = (Stage) gfdbk.getScene().getWindow();
             currentStage.close();
 
             // Show the new stage

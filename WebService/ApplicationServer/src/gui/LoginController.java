@@ -62,7 +62,7 @@ public class LoginController implements Initializable{
 
             // Set up the stage
             Stage stage = new Stage();
-            stage.setTitle("Login JavaFX Application");
+            stage.setTitle("Tutor JavaFX Application");
             stage.setScene(scene);
 
             // Close the current stage

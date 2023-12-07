@@ -113,7 +113,7 @@ public class Service extends UnicastRemoteObject implements IService{
 		// TODO Auto-generated method stub
 		boolean b=false;
 		for(Tutor t : Tutors) {
-		 if (t.getMail().equals(mail)) {
+		 if (t.getMail().equals(mail)&& t.getMdp().equals(mdp)) {
 		 	b=true;
 		 	return "Login Succesful";
 		} }
@@ -153,16 +153,17 @@ public class Service extends UnicastRemoteObject implements IService{
 	                return "Appointement Booked.";
 	            } else {
 	                List<String> waitingList = retrieveElement(mail).getWaitingList();
-	                waitingList.add(student);
+		            List<String> newWaitingList = new ArrayList<>(waitingList);
+		            newWaitingList.add(student);
+		            retrieveElement(mail).setWaitingList(newWaitingList);
 	                retrieveElement(mail).setWaitingList(waitingList);
 	                return "You are on the waiting list.";
 	            }
 	        } else {
 	            List<String> waitingList = retrieveElement(mail).getWaitingList();
-	            ///System.out.println("hihaaaaaaaa33");
-	            waitingList.add(student);
-	            //System.out.println("hihaaaaaaaa33");
-	            retrieveElement(mail).setWaitingList(waitingList);
+	            List<String> newWaitingList = new ArrayList<>(waitingList);
+	            newWaitingList.add(student);
+	            retrieveElement(mail).setWaitingList(newWaitingList);
 	            return "You are on the waiting list.";
 	        }
 	    } else {

@@ -63,14 +63,15 @@ public class ExternalStudent {
 			 }
 		return null;
 	} 
-	public void bookAppointement(String mail, String fullName, String apt) {
+	public String  bookAppointement(String mail, String fullName, String apt) {
 		try {
 			 IService s = (IService) Naming.lookup("rmi://localhost/TutorService");
-			 s.bookAppointment(mail, fullName, apt);
+			 return s.bookAppointment(mail, fullName, apt);
 			 }
 			 catch (Exception e) {
 			 System.out.println("Trouble " + e);
 			 }
+		return "";
 	}
 	public Tutors lookTBySkill(String skill){
 		try {
@@ -100,6 +101,9 @@ public class ExternalStudent {
 			IService tuts = (IService) Naming.lookup("rmi://localhost/TutorService");
 			List t=new ArrayList<ITutor>();
 			t=tuts.getAllTutors();
+			System.out.println(t);
+			System.out.println(((ITutor)t.stream().findFirst().get()).getMdp());
+			System.out.println("aha");
 			return new Tutors(t);
 			 }
 			 catch (Exception e) {

@@ -34,44 +34,46 @@
   <ns1:parameter name="className" value="org.apache.axis.Version"/>
  </ns1:service>
  <ns1:service name="ExternalStudent" provider="java:RPC" style="wrapped" use="literal">
-  <ns2:operation name="getFullName" qname="ns1:getFullName" returnQName="ns1:getFullNameReturn" returnType="xsd:string" soapAction="" xmlns:ns1="http://student" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ns2="http://xml.apache.org/axis/wsdd/"/>
-  <ns1:operation name="getUser" qname="ns2:getUser" returnQName="ns2:getUserReturn" returnType="xsd:string" soapAction="" xmlns:ns2="http://student" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
-  <ns1:operation name="setUser" qname="ns3:setUser" soapAction="" xmlns:ns3="http://student">
-   <ns1:parameter qname="ns3:user" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  <ns2:operation name="getMdp" qname="ns1:getMdp" returnQName="ns1:getMdpReturn" returnType="xsd:string" soapAction="" xmlns:ns1="http://student" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ns2="http://xml.apache.org/axis/wsdd/"/>
+  <ns1:operation name="lookTByName" qname="ns2:lookTByName" returnQName="ns2:lookTByNameReturn" returnType="ns2:Tutors" soapAction="" xmlns:ns2="http://student">
+   <ns1:parameter qname="ns2:firstname" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <ns1:parameter qname="ns2:lastname" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
   </ns1:operation>
-  <ns1:operation name="getMdp" qname="ns4:getMdp" returnQName="ns4:getMdpReturn" returnType="xsd:string" soapAction="" xmlns:ns4="http://student" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
-  <ns1:operation name="lookTByName" qname="ns5:lookTByName" returnQName="ns5:lookTByNameReturn" returnType="ns5:Tutors" soapAction="" xmlns:ns5="http://student">
-   <ns1:parameter qname="ns5:firstname" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
-   <ns1:parameter qname="ns5:lastname" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  <ns1:operation name="bookAppointement" qname="ns3:bookAppointement" returnQName="ns3:bookAppointementReturn" returnType="xsd:string" soapAction="" xmlns:ns3="http://student" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns3:mail" type="xsd:string"/>
+   <ns1:parameter qname="ns3:fullName" type="xsd:string"/>
+   <ns1:parameter qname="ns3:apt" type="xsd:string"/>
   </ns1:operation>
+  <ns1:operation name="giveFeedback" qname="ns4:giveFeedback" soapAction="" xmlns:ns4="http://student">
+   <ns1:parameter qname="ns4:feedback" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <ns1:parameter qname="ns4:mail" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  </ns1:operation>
+  <ns1:operation name="getAllTutors" qname="ns5:getAllTutors" returnQName="ns5:getAllTutorsReturn" returnType="ns5:Tutors" soapAction="" xmlns:ns5="http://student"/>
   <ns1:operation name="setMdp" qname="ns6:setMdp" soapAction="" xmlns:ns6="http://student">
    <ns1:parameter qname="ns6:mdp" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
   </ns1:operation>
-  <ns1:operation name="getUniversity" qname="ns7:getUniversity" returnQName="ns7:getUniversityReturn" returnType="xsd:string" soapAction="" xmlns:ns7="http://student" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
-  <ns1:operation name="setUniversity" qname="ns8:setUniversity" soapAction="" xmlns:ns8="http://student">
-   <ns1:parameter qname="ns8:university" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  <ns1:operation name="setFullName" qname="ns7:setFullName" soapAction="" xmlns:ns7="http://student">
+   <ns1:parameter qname="ns7:fullName" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
   </ns1:operation>
-  <ns1:operation name="getAllTutors" qname="ns9:getAllTutors" returnQName="ns9:getAllTutorsReturn" returnType="ns9:Tutors" soapAction="" xmlns:ns9="http://student"/>
-  <ns1:operation name="bookAppointement" qname="ns10:BookAppointement" soapAction="" xmlns:ns10="http://student">
-   <ns1:parameter qname="ns10:fullName" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
-   <ns1:parameter qname="ns10:firstName" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
-   <ns1:parameter qname="ns10:lastName" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
-   <ns1:parameter qname="ns10:startt" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
-   <ns1:parameter qname="ns10:endd" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  <ns1:operation name="lookTByFirstName" qname="ns8:lookTByFirstName" returnQName="ns8:lookTByFirstNameReturn" returnType="ns8:Tutors" soapAction="" xmlns:ns8="http://student">
+   <ns1:parameter qname="ns8:firstname" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
   </ns1:operation>
+  <ns1:operation name="setUniversity" qname="ns9:setUniversity" soapAction="" xmlns:ns9="http://student">
+   <ns1:parameter qname="ns9:university" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  </ns1:operation>
+  <ns1:operation name="getUniversity" qname="ns10:getUniversity" returnQName="ns10:getUniversityReturn" returnType="xsd:string" soapAction="" xmlns:ns10="http://student" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
   <ns1:operation name="lookTByLastName" qname="ns11:lookTByLastName" returnQName="ns11:lookTByLastNameReturn" returnType="ns11:Tutors" soapAction="" xmlns:ns11="http://student">
    <ns1:parameter qname="ns11:lastname" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
   </ns1:operation>
-  <ns1:operation name="lookTByFirstName" qname="ns12:lookTByFirstName" returnQName="ns12:lookTByFirstNameReturn" returnType="ns12:Tutors" soapAction="" xmlns:ns12="http://student">
-   <ns1:parameter qname="ns12:firstname" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  <ns1:operation name="lookTBySkill" qname="ns12:lookTBySkill" returnQName="ns12:lookTBySkillReturn" returnType="ns12:Tutors" soapAction="" xmlns:ns12="http://student">
+   <ns1:parameter qname="ns12:skill" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
   </ns1:operation>
-  <ns1:operation name="lookTBySkill" qname="ns13:lookTBySkill" returnQName="ns13:lookTBySkillReturn" returnType="ns13:Tutors" soapAction="" xmlns:ns13="http://student">
-   <ns1:parameter qname="ns13:skill" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  <ns1:operation name="getFullName" qname="ns13:getFullName" returnQName="ns13:getFullNameReturn" returnType="xsd:string" soapAction="" xmlns:ns13="http://student" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  <ns1:operation name="getUser" qname="ns14:getUser" returnQName="ns14:getUserReturn" returnType="xsd:string" soapAction="" xmlns:ns14="http://student" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  <ns1:operation name="setUser" qname="ns15:setUser" soapAction="" xmlns:ns15="http://student">
+   <ns1:parameter qname="ns15:user" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
   </ns1:operation>
-  <ns1:operation name="setFullName" qname="ns14:setFullName" soapAction="" xmlns:ns14="http://student">
-   <ns1:parameter qname="ns14:fullName" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
-  </ns1:operation>
-  <ns1:parameter name="allowedMethods" value="lookTByName lookTByFirstName getUser getMdp lookTBySkill getUniversity getAllTutors setMdp lookTByLastName bookAppointement setFullName setUser getFullName setUniversity"/>
+  <ns1:parameter name="allowedMethods" value="lookTByName lookTByFirstName giveFeedback getUser getMdp lookTBySkill getUniversity getAllTutors setMdp lookTByLastName bookAppointement setFullName setUser setUniversity getFullName"/>
   <ns1:parameter name="typeMappingVersion" value="1.2"/>
   <ns1:parameter name="wsdlPortType" value="ExternalStudent"/>
   <ns1:parameter name="className" value="student.ExternalStudent"/>
@@ -79,7 +81,11 @@
   <ns1:parameter name="schemaQualified" value="http://student"/>
   <ns1:parameter name="wsdlTargetNamespace" value="http://student"/>
   <ns1:parameter name="wsdlServiceElement" value="ExternalStudentService"/>
-  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns15:Tutors" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:student.Tutors" xmlns:ns15="http://student"/>
+  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns16:Tutors" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:student.Tutors" xmlns:ns16="http://student"/>
+  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns17:Tutor" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:student.Tutor" xmlns:ns17="http://student"/>
+  <ns1:arrayMapping innerType="xsd:string" languageSpecificType="java:java.lang.String[]" qname="ns18:ArrayOf_xsd_string" xmlns:ns18="http://student" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  <ns1:arrayMapping innerType="ns19:ArrayOf_xsd_string" languageSpecificType="java:java.lang.String[][]" qname="ns19:ArrayOfArrayOf_xsd_string" xmlns:ns19="http://student"/>
+  <ns1:arrayMapping innerType="ns20:Tutor" languageSpecificType="java:student.Tutor[]" qname="ns20:ArrayOfTutor" xmlns:ns20="http://student"/>
  </ns1:service>
  <ns1:transport name="http">
   <ns1:requestFlow>

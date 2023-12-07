@@ -51,31 +51,30 @@ public class ServerService extends Application{
 	            double[] rates = {60.0, 45.0, 50.0};
 
 	            List<String>[] waitingLists = new List[]{
-	                    Arrays.asList("Heni Walha <heni.walha@edu.univ-eiffel.fr>", "John Doe <john.doe@edu.univ-eiffel.fr>"),
-	                    Arrays.asList("Emma Johnson <emma.johnson@edu.univ-eiffel.fr>", "Michael Smith <michael.smith@edu.univ-eiffel.fr>"),
-	                    Arrays.asList("Sophia Williams <sophia.williams@edu.univ-eiffel.fr>", "William Brown <william.brown@edu.univ-eiffel.fr>")
-	            };
+	            	    new ArrayList<>(Arrays.asList("Heni Walha <heni.walha@esprit.tn>", "John Doe <john.doe@edu.univ-eiffel.fr>")),
+	            	    new ArrayList<>(Arrays.asList("Emma Johnson <emma.johnson@edu.univ-eiffel.fr>", "Michael Smith <michael.smith@edu.univ-eiffel.fr>")),
+	            	    new ArrayList<>(Arrays.asList("Sophia Williams <sophia.williams@edu.univ-eiffel.fr>", "William Brown <william.brown@edu.univ-eiffel.fr>"))
+	            	};
 
-	            List<String>[] skills = new List[]{
-	                    Arrays.asList("Java", "Python", "Machine Learning"),
-	                    Arrays.asList("C++", "JavaScript"),
-	                    Arrays.asList("Data Science", "SQL")
-	            };
-
+	            	List<String>[] skills = new List[]{
+	            	    new ArrayList<>(Arrays.asList("Java", "Python", "Machine Learning")),
+	            	    new ArrayList<>(Arrays.asList("C++", "JavaScript")),
+	            	    new ArrayList<>(Arrays.asList("Data Science", "SQL"))
+	            	};
 	            HashMap<String, String>[] availabilities = new HashMap[]{
-	                    createAvailabilityMap("2023-12-01 09:00 to 10:00", "Heni Walha <heni.walha@edu.univ-eiffel.fr>", "2023-12-02 14:00 to 16:00", "John Doe <john.doe@edu.univ-eiffel.fr>"),
-	                    createAvailabilityMap("2023-12-03 10:00 to 12:00", "Emma Johnson <emma.johnson@edu.univ-eiffel.fr>", "2023-12-04 11:00 to 12:00", "Michael Smith <michael.smith@edu.univ-eiffel.fr>"),
-	                    createAvailabilityMap("2023-12-05 08:00 to 10:00", "Sophia Williams <sophia.williams@edu.univ-eiffel.fr>", "2023-12-06 09:00 to 11:00", "William Brown <william.brown@edu.univ-eiffel.fr>")
+	                    createAvailabilityMap("2023-12-01 9:00 to 10:00", "", "2023-12-02 14:00 to 16:00", "John Doe <john.doe@edu.univ-eiffel.fr>","2023-12-02 16:00 to 17:00", ""),
+	                    createAvailabilityMap("2023-12-03 10:00 to 12:00", "", "2023-12-04 11:00 to 12:00", "Michael Smith <michael.smith@edu.univ-eiffel.fr>"),
+	                    createAvailabilityMap("2023-12-05 8:00 to 10:00", "Sophia Williams <sophia.williams@edu.univ-eiffel.fr>", "2023-12-06 9:00 to 11:00", "William Brown <william.brown@edu.univ-eiffel.fr>")
 	            };
-
 	            for (int i = 0; i < 3; i++) {
 	                Tutor tutor = new Tutor(mails[i], passwords[i], firstNames[i], lastNames[i], ratings[i], rates[i], waitingLists[i], skills[i], availabilities[i]);
 	                tutors.add(tutor);
 	            }
 	            // Create an instance of the server
 	            Service tutorService = new Service(tutors);
-
+	            
 	            Naming.rebind("TutorService", tutorService);
+	            
 	            launch(args);
 	            System.out.println("TutorServiceServer is running...");
 	        } catch (Exception e) {

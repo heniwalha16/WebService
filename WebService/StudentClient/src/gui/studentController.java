@@ -25,9 +25,9 @@ import student.Student;
 public class studentController implements Initializable{
 	
 
-	 String Mail;
-	 String FullName;
-	 IStudent s;
+	 String Mail="";
+	 String FullName="";
+	 //Student s;
 	 @FXML
 	 private GridPane tut_container;
 	 @FXML
@@ -41,50 +41,7 @@ public class studentController implements Initializable{
  	@Override
  	public void initialize(URL arg0, ResourceBundle arg1) {
  		// TODO Auto-generated method stub
- 		IService listTutors = null;
-		try {
-			listTutors = (IService) Naming.lookup("rmi://localhost/TutorService");
-		} catch (IOException e1) {
-			// TODO Auto-generated catch block
-			System.out.println(e1);
-		} catch (NotBoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} 
- 		comboBox_criteria.getItems().addAll("Full Name","First Name", "Last Name","Skill","ALL");
-        comboBox_criteria.getSelectionModel().select("ALL");
-        
-        List<ITutor> TutList = null;
-		try {
-			TutList = listTutors.getAllTutors();
-		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-        
-        int column = 0;
-        int row = 1;
-        try {
-            for (int i = 0; i < TutList.size(); i++) {
-
-                FXMLLoader fxmlLoader = new FXMLLoader();
-                fxmlLoader.setLocation(getClass().getResource("cardView.fxml"));
-                Pane cardBox = fxmlLoader.load();
-                cardViewController cardController = fxmlLoader.getController();
-                ITutor t = TutList.get(i);
-                cardController.setData(t,Mail,FullName);
-
-                if (column == 2) {
-                    column = 0;
-                    ++row;
-                }
-                tut_container.add(cardBox, column++, row);
-
-            }
-        } catch (IOException ex) {
-        
-        	System.out.println(ex);       
-}
+ 		
  	}
 
      
@@ -95,7 +52,52 @@ public class studentController implements Initializable{
     	 IService listTutors = (IService) Naming.lookup("rmi://localhost/TutorService");
     	 tut_container.getChildren().clear();
          if (comboBox_criteria.getValue().equals("ALL")) {
-             initialize(url, rb);
+      		try {
+      			listTutors = (IService) Naming.lookup("rmi://localhost/TutorService");
+      		} catch (IOException e1) {
+      			// TODO Auto-generated catch block
+      			System.out.println(e1);
+      		} catch (NotBoundException e) {
+      			// TODO Auto-generated catch block
+      			e.printStackTrace();
+      		} 
+       		comboBox_criteria.getItems().addAll("Full Name","First Name", "Last Name","Skill","ALL");
+              comboBox_criteria.getSelectionModel().select("ALL");
+              
+              List<ITutor> TutList = null;
+      		try {
+      			TutList = listTutors.getAllTutors();
+      		} catch (RemoteException e) {
+      			// TODO Auto-generated catch block
+      			e.printStackTrace();
+      		}
+              
+              int column = 0;
+              int row = 1;
+              try {
+                  for (int i = 0; i < TutList.size(); i++) {
+
+                      FXMLLoader fxmlLoader = new FXMLLoader();
+                      fxmlLoader.setLocation(getClass().getResource("cardView.fxml"));
+                      Pane cardBox = fxmlLoader.load();
+                      cardViewController cardController = fxmlLoader.getController();
+                      ITutor t = TutList.get(i);
+                      System.out.println("init student:"+Mail);
+                      System.out.println("init student:"+FullName);
+                      cardController.setData(t,Mail,FullName);
+                      
+
+                      if (column == 2) {
+                          column = 0;
+                          ++row;
+                      }
+                      tut_container.add(cardBox, column++, row);
+
+                  }
+              } catch (IOException ex) {
+              
+              	System.out.println(ex);       
+      }
          } else {
         	    List<ITutor> TutList = listTutors.getAllTutors();
         	    if(comboBox_criteria.getValue().equals("Full Name")) {
@@ -121,7 +123,10 @@ public class studentController implements Initializable{
                         Pane cardBox = fxmlLoader.load();
                         cardViewController cardController = fxmlLoader.getController();
                         ITutor t  = TutList.get(i);
+                        System.out.println("Search student:"+Mail);
+                        System.out.println("Search student:"+FullName);
                         cardController.setData(t,Mail,FullName);
+                        //Pane cardBox = fxmlLoader.load();
 
                         if (column == 2) {
                             column = 0;
@@ -138,8 +143,61 @@ public class studentController implements Initializable{
                 }
          }
      }
-     public void setData(IStudent s) {
-    	 this.s=s;
+
+     public void setData(String Mail,String Fullname) {
+    	 System.out.println("retrieved student:"+Mail);
+         System.out.println("retrieved student:"+Fullname);
+    	 this.Mail=Mail;
+    	 this.FullName=Fullname;
+    	 System.out.println("Setted student:"+this.Mail);
+         System.out.println("Settedstudent :"+FullName);
+    	 IService listTutors = null;
+ 		try {
+ 			listTutors = (IService) Naming.lookup("rmi://localhost/TutorService");
+ 		} catch (IOException e1) {
+ 			// TODO Auto-generated catch block
+ 			System.out.println(e1);
+ 		} catch (NotBoundException e) {
+ 			// TODO Auto-generated catch block
+ 			e.printStackTrace();
+ 		} 
+  		comboBox_criteria.getItems().addAll("Full Name","First Name", "Last Name","Skill","ALL");
+         comboBox_criteria.getSelectionModel().select("ALL");
+         
+         List<ITutor> TutList = null;
+ 		try {
+ 			TutList = listTutors.getAllTutors();
+ 		} catch (RemoteException e) {
+ 			// TODO Auto-generated catch block
+ 			e.printStackTrace();
+ 		}
+         
+         int column = 0;
+         int row = 1;
+         try {
+             for (int i = 0; i < TutList.size(); i++) {
+
+                 FXMLLoader fxmlLoader = new FXMLLoader();
+                 fxmlLoader.setLocation(getClass().getResource("cardView.fxml"));
+                 Pane cardBox = fxmlLoader.load();
+                 cardViewController cardController = fxmlLoader.getController();
+                 ITutor t = TutList.get(i);
+                 System.out.println("init student:"+Mail);
+                 System.out.println("init student:"+FullName);
+                 cardController.setData(t,Mail,FullName);
+                 
+
+                 if (column == 2) {
+                     column = 0;
+                     ++row;
+                 }
+                 tut_container.add(cardBox, column++, row);
+
+             }
+         } catch (IOException ex) {
+         
+         	System.out.println(ex);       
+ }
      }
 
 

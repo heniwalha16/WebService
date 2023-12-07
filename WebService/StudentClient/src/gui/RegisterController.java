@@ -54,12 +54,24 @@ public class RegisterController implements Initializable{
 		message.setText(sts.register(mail.getText(), pwd.getText(), fullname.getText(), uni.getText()));}
 		else {
 		Mail=mail.getText();
+		System.out.println("ahou ll mail: "+Mail);
 		try {
+			System.out.println("loading... ");
             // Load the new FXML file
             FXMLLoader loader = new FXMLLoader(getClass().getResource("student.fxml"));
+            System.out.println("loading... +1");
             Parent root = loader.load();
+            System.out.println("loading... +2");
             studentController StudentController = loader.getController();
-            StudentController.setData(sts.retrieveElement(Mail));
+            
+            System.out.println("loading... +3");
+            System.out.println("ahou ll mail li yelkah: "+sts.retrieveElementt(Mail).getMail());
+            System.out.println("loading... +4");
+            System.out.println("Sending:"+Mail+"+"+fullname);
+            StudentController.setData(Mail,fullname.getText());
+            System.out.println("Sent:");
+           
+            //Parent root = loader.load();
             // Set up the scene
             Scene scene = new Scene(root);
 

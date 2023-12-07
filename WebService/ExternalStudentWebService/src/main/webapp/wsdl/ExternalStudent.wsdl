@@ -4,6 +4,182 @@
 Built on Apr 22, 2006 (06:55:48 PDT)-->
  <wsdl:types>
   <schema elementFormDefault="qualified" targetNamespace="http://student" xmlns="http://www.w3.org/2001/XMLSchema">
+   <element name="getMdp">
+    <complexType/>
+   </element>
+   <element name="getMdpResponse">
+    <complexType>
+     <sequence>
+      <element name="getMdpReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="lookTByName">
+    <complexType>
+     <sequence>
+      <element name="firstname" type="xsd:string"/>
+      <element name="lastname" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="lookTByNameResponse">
+    <complexType>
+     <sequence>
+      <element name="lookTByNameReturn" type="impl:Tutors"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="ArrayOf_xsd_string">
+    <sequence>
+     <element maxOccurs="unbounded" minOccurs="0" name="item" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="ArrayOfArrayOf_xsd_string">
+    <sequence>
+     <element maxOccurs="unbounded" minOccurs="0" name="item" type="impl:ArrayOf_xsd_string"/>
+    </sequence>
+   </complexType>
+   <complexType name="Tutor">
+    <sequence>
+     <element name="availability" nillable="true" type="impl:ArrayOfArrayOf_xsd_string"/>
+     <element name="firstname" nillable="true" type="xsd:string"/>
+     <element name="lastname" nillable="true" type="xsd:string"/>
+     <element name="mail" nillable="true" type="xsd:string"/>
+     <element name="rate" type="xsd:double"/>
+     <element name="rating" type="xsd:double"/>
+     <element name="skills" nillable="true" type="impl:ArrayOf_xsd_string"/>
+     <element name="waitingList" nillable="true" type="impl:ArrayOf_xsd_string"/>
+    </sequence>
+   </complexType>
+   <complexType name="ArrayOfTutor">
+    <sequence>
+     <element maxOccurs="unbounded" minOccurs="0" name="item" type="impl:Tutor"/>
+    </sequence>
+   </complexType>
+   <complexType name="Tutors">
+    <sequence>
+     <element name="t" nillable="true" type="impl:ArrayOfTutor"/>
+    </sequence>
+   </complexType>
+   <element name="bookAppointement">
+    <complexType>
+     <sequence>
+      <element name="mail" type="xsd:string"/>
+      <element name="fullName" type="xsd:string"/>
+      <element name="apt" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="bookAppointementResponse">
+    <complexType>
+     <sequence>
+      <element name="bookAppointementReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="giveFeedback">
+    <complexType>
+     <sequence>
+      <element name="feedback" type="xsd:string"/>
+      <element name="mail" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="giveFeedbackResponse">
+    <complexType/>
+   </element>
+   <element name="getAllTutors">
+    <complexType/>
+   </element>
+   <element name="getAllTutorsResponse">
+    <complexType>
+     <sequence>
+      <element name="getAllTutorsReturn" type="impl:Tutors"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="setMdp">
+    <complexType>
+     <sequence>
+      <element name="mdp" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="setMdpResponse">
+    <complexType/>
+   </element>
+   <element name="setFullName">
+    <complexType>
+     <sequence>
+      <element name="fullName" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="setFullNameResponse">
+    <complexType/>
+   </element>
+   <element name="lookTByFirstName">
+    <complexType>
+     <sequence>
+      <element name="firstname" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="lookTByFirstNameResponse">
+    <complexType>
+     <sequence>
+      <element name="lookTByFirstNameReturn" type="impl:Tutors"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="setUniversity">
+    <complexType>
+     <sequence>
+      <element name="university" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="setUniversityResponse">
+    <complexType/>
+   </element>
+   <element name="getUniversity">
+    <complexType/>
+   </element>
+   <element name="getUniversityResponse">
+    <complexType>
+     <sequence>
+      <element name="getUniversityReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="lookTByLastName">
+    <complexType>
+     <sequence>
+      <element name="lastname" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="lookTByLastNameResponse">
+    <complexType>
+     <sequence>
+      <element name="lookTByLastNameReturn" type="impl:Tutors"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="lookTBySkill">
+    <complexType>
+     <sequence>
+      <element name="skill" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="lookTBySkillResponse">
+    <complexType>
+     <sequence>
+      <element name="lookTBySkillReturn" type="impl:Tutors"/>
+     </sequence>
+    </complexType>
+   </element>
    <element name="getFullName">
     <complexType/>
    </element>
@@ -34,140 +210,6 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
    <element name="setUserResponse">
     <complexType/>
    </element>
-   <element name="getMdp">
-    <complexType/>
-   </element>
-   <element name="getMdpResponse">
-    <complexType>
-     <sequence>
-      <element name="getMdpReturn" type="xsd:string"/>
-     </sequence>
-    </complexType>
-   </element>
-   <element name="lookTByName">
-    <complexType>
-     <sequence>
-      <element name="firstname" type="xsd:string"/>
-      <element name="lastname" type="xsd:string"/>
-     </sequence>
-    </complexType>
-   </element>
-   <element name="lookTByNameResponse">
-    <complexType>
-     <sequence>
-      <element name="lookTByNameReturn" type="impl:Tutors"/>
-     </sequence>
-    </complexType>
-   </element>
-   <complexType name="Tutors">
-    <sequence/>
-   </complexType>
-   <element name="setMdp">
-    <complexType>
-     <sequence>
-      <element name="mdp" type="xsd:string"/>
-     </sequence>
-    </complexType>
-   </element>
-   <element name="setMdpResponse">
-    <complexType/>
-   </element>
-   <element name="getUniversity">
-    <complexType/>
-   </element>
-   <element name="getUniversityResponse">
-    <complexType>
-     <sequence>
-      <element name="getUniversityReturn" type="xsd:string"/>
-     </sequence>
-    </complexType>
-   </element>
-   <element name="setUniversity">
-    <complexType>
-     <sequence>
-      <element name="university" type="xsd:string"/>
-     </sequence>
-    </complexType>
-   </element>
-   <element name="setUniversityResponse">
-    <complexType/>
-   </element>
-   <element name="getAllTutors">
-    <complexType/>
-   </element>
-   <element name="getAllTutorsResponse">
-    <complexType>
-     <sequence>
-      <element name="getAllTutorsReturn" type="impl:Tutors"/>
-     </sequence>
-    </complexType>
-   </element>
-   <element name="BookAppointement">
-    <complexType>
-     <sequence>
-      <element name="fullName" type="xsd:string"/>
-      <element name="firstName" type="xsd:string"/>
-      <element name="lastName" type="xsd:string"/>
-      <element name="startt" type="xsd:string"/>
-      <element name="endd" type="xsd:string"/>
-     </sequence>
-    </complexType>
-   </element>
-   <element name="BookAppointementResponse">
-    <complexType/>
-   </element>
-   <element name="lookTByLastName">
-    <complexType>
-     <sequence>
-      <element name="lastname" type="xsd:string"/>
-     </sequence>
-    </complexType>
-   </element>
-   <element name="lookTByLastNameResponse">
-    <complexType>
-     <sequence>
-      <element name="lookTByLastNameReturn" type="impl:Tutors"/>
-     </sequence>
-    </complexType>
-   </element>
-   <element name="lookTByFirstName">
-    <complexType>
-     <sequence>
-      <element name="firstname" type="xsd:string"/>
-     </sequence>
-    </complexType>
-   </element>
-   <element name="lookTByFirstNameResponse">
-    <complexType>
-     <sequence>
-      <element name="lookTByFirstNameReturn" type="impl:Tutors"/>
-     </sequence>
-    </complexType>
-   </element>
-   <element name="lookTBySkill">
-    <complexType>
-     <sequence>
-      <element name="skill" type="xsd:string"/>
-     </sequence>
-    </complexType>
-   </element>
-   <element name="lookTBySkillResponse">
-    <complexType>
-     <sequence>
-      <element name="lookTBySkillReturn" type="impl:Tutors"/>
-     </sequence>
-    </complexType>
-   </element>
-   <element name="setFullName">
-    <complexType>
-     <sequence>
-      <element name="fullName" type="xsd:string"/>
-     </sequence>
-    </complexType>
-   </element>
-   <element name="setFullNameResponse">
-    <complexType/>
-   </element>
   </schema>
  </wsdl:types>
 
@@ -190,6 +232,14 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
    <wsdl:message name="lookTByNameResponse">
 
       <wsdl:part element="impl:lookTByNameResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="bookAppointementResponse">
+
+      <wsdl:part element="impl:bookAppointementResponse" name="parameters">
 
       </wsdl:part>
 
@@ -219,14 +269,6 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
    </wsdl:message>
 
-   <wsdl:message name="setMdpRequest">
-
-      <wsdl:part element="impl:setMdp" name="parameters">
-
-      </wsdl:part>
-
-   </wsdl:message>
-
    <wsdl:message name="getAllTutorsRequest">
 
       <wsdl:part element="impl:getAllTutors" name="parameters">
@@ -235,9 +277,9 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
    </wsdl:message>
 
-   <wsdl:message name="getUserRequest">
+   <wsdl:message name="setMdpRequest">
 
-      <wsdl:part element="impl:getUser" name="parameters">
+      <wsdl:part element="impl:setMdp" name="parameters">
 
       </wsdl:part>
 
@@ -251,17 +293,33 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
    </wsdl:message>
 
-   <wsdl:message name="getUniversityRequest">
+   <wsdl:message name="getUserRequest">
 
-      <wsdl:part element="impl:getUniversity" name="parameters">
+      <wsdl:part element="impl:getUser" name="parameters">
 
       </wsdl:part>
 
    </wsdl:message>
 
-   <wsdl:message name="BookAppointementRequest">
+   <wsdl:message name="giveFeedbackRequest">
 
-      <wsdl:part element="impl:BookAppointement" name="parameters">
+      <wsdl:part element="impl:giveFeedback" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="giveFeedbackResponse">
+
+      <wsdl:part element="impl:giveFeedbackResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getUniversityRequest">
+
+      <wsdl:part element="impl:getUniversity" name="parameters">
 
       </wsdl:part>
 
@@ -315,6 +373,14 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
    </wsdl:message>
 
+   <wsdl:message name="bookAppointementRequest">
+
+      <wsdl:part element="impl:bookAppointement" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
    <wsdl:message name="getMdpRequest">
 
       <wsdl:part element="impl:getMdp" name="parameters">
@@ -363,25 +429,9 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
    </wsdl:message>
 
-   <wsdl:message name="BookAppointementResponse">
-
-      <wsdl:part element="impl:BookAppointementResponse" name="parameters">
-
-      </wsdl:part>
-
-   </wsdl:message>
-
    <wsdl:message name="lookTByFirstNameRequest">
 
       <wsdl:part element="impl:lookTByFirstName" name="parameters">
-
-      </wsdl:part>
-
-   </wsdl:message>
-
-   <wsdl:message name="getFullNameRequest">
-
-      <wsdl:part element="impl:getFullName" name="parameters">
 
       </wsdl:part>
 
@@ -395,7 +445,159 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
    </wsdl:message>
 
+   <wsdl:message name="getFullNameRequest">
+
+      <wsdl:part element="impl:getFullName" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
    <wsdl:portType name="ExternalStudent">
+
+      <wsdl:operation name="getMdp">
+
+         <wsdl:input message="impl:getMdpRequest" name="getMdpRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getMdpResponse" name="getMdpResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="lookTByName">
+
+         <wsdl:input message="impl:lookTByNameRequest" name="lookTByNameRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:lookTByNameResponse" name="lookTByNameResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="bookAppointement">
+
+         <wsdl:input message="impl:bookAppointementRequest" name="bookAppointementRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:bookAppointementResponse" name="bookAppointementResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="giveFeedback">
+
+         <wsdl:input message="impl:giveFeedbackRequest" name="giveFeedbackRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:giveFeedbackResponse" name="giveFeedbackResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getAllTutors">
+
+         <wsdl:input message="impl:getAllTutorsRequest" name="getAllTutorsRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getAllTutorsResponse" name="getAllTutorsResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="setMdp">
+
+         <wsdl:input message="impl:setMdpRequest" name="setMdpRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:setMdpResponse" name="setMdpResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="setFullName">
+
+         <wsdl:input message="impl:setFullNameRequest" name="setFullNameRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:setFullNameResponse" name="setFullNameResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="lookTByFirstName">
+
+         <wsdl:input message="impl:lookTByFirstNameRequest" name="lookTByFirstNameRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:lookTByFirstNameResponse" name="lookTByFirstNameResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="setUniversity">
+
+         <wsdl:input message="impl:setUniversityRequest" name="setUniversityRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:setUniversityResponse" name="setUniversityResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getUniversity">
+
+         <wsdl:input message="impl:getUniversityRequest" name="getUniversityRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getUniversityResponse" name="getUniversityResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="lookTByLastName">
+
+         <wsdl:input message="impl:lookTByLastNameRequest" name="lookTByLastNameRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:lookTByLastNameResponse" name="lookTByLastNameResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="lookTBySkill">
+
+         <wsdl:input message="impl:lookTBySkillRequest" name="lookTBySkillRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:lookTBySkillResponse" name="lookTBySkillResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
 
       <wsdl:operation name="getFullName">
 
@@ -433,143 +635,227 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
       </wsdl:operation>
 
-      <wsdl:operation name="getMdp">
-
-         <wsdl:input message="impl:getMdpRequest" name="getMdpRequest">
-
-       </wsdl:input>
-
-         <wsdl:output message="impl:getMdpResponse" name="getMdpResponse">
-
-       </wsdl:output>
-
-      </wsdl:operation>
-
-      <wsdl:operation name="lookTByName">
-
-         <wsdl:input message="impl:lookTByNameRequest" name="lookTByNameRequest">
-
-       </wsdl:input>
-
-         <wsdl:output message="impl:lookTByNameResponse" name="lookTByNameResponse">
-
-       </wsdl:output>
-
-      </wsdl:operation>
-
-      <wsdl:operation name="setMdp">
-
-         <wsdl:input message="impl:setMdpRequest" name="setMdpRequest">
-
-       </wsdl:input>
-
-         <wsdl:output message="impl:setMdpResponse" name="setMdpResponse">
-
-       </wsdl:output>
-
-      </wsdl:operation>
-
-      <wsdl:operation name="getUniversity">
-
-         <wsdl:input message="impl:getUniversityRequest" name="getUniversityRequest">
-
-       </wsdl:input>
-
-         <wsdl:output message="impl:getUniversityResponse" name="getUniversityResponse">
-
-       </wsdl:output>
-
-      </wsdl:operation>
-
-      <wsdl:operation name="setUniversity">
-
-         <wsdl:input message="impl:setUniversityRequest" name="setUniversityRequest">
-
-       </wsdl:input>
-
-         <wsdl:output message="impl:setUniversityResponse" name="setUniversityResponse">
-
-       </wsdl:output>
-
-      </wsdl:operation>
-
-      <wsdl:operation name="getAllTutors">
-
-         <wsdl:input message="impl:getAllTutorsRequest" name="getAllTutorsRequest">
-
-       </wsdl:input>
-
-         <wsdl:output message="impl:getAllTutorsResponse" name="getAllTutorsResponse">
-
-       </wsdl:output>
-
-      </wsdl:operation>
-
-      <wsdl:operation name="BookAppointement">
-
-         <wsdl:input message="impl:BookAppointementRequest" name="BookAppointementRequest">
-
-       </wsdl:input>
-
-         <wsdl:output message="impl:BookAppointementResponse" name="BookAppointementResponse">
-
-       </wsdl:output>
-
-      </wsdl:operation>
-
-      <wsdl:operation name="lookTByLastName">
-
-         <wsdl:input message="impl:lookTByLastNameRequest" name="lookTByLastNameRequest">
-
-       </wsdl:input>
-
-         <wsdl:output message="impl:lookTByLastNameResponse" name="lookTByLastNameResponse">
-
-       </wsdl:output>
-
-      </wsdl:operation>
-
-      <wsdl:operation name="lookTByFirstName">
-
-         <wsdl:input message="impl:lookTByFirstNameRequest" name="lookTByFirstNameRequest">
-
-       </wsdl:input>
-
-         <wsdl:output message="impl:lookTByFirstNameResponse" name="lookTByFirstNameResponse">
-
-       </wsdl:output>
-
-      </wsdl:operation>
-
-      <wsdl:operation name="lookTBySkill">
-
-         <wsdl:input message="impl:lookTBySkillRequest" name="lookTBySkillRequest">
-
-       </wsdl:input>
-
-         <wsdl:output message="impl:lookTBySkillResponse" name="lookTBySkillResponse">
-
-       </wsdl:output>
-
-      </wsdl:operation>
-
-      <wsdl:operation name="setFullName">
-
-         <wsdl:input message="impl:setFullNameRequest" name="setFullNameRequest">
-
-       </wsdl:input>
-
-         <wsdl:output message="impl:setFullNameResponse" name="setFullNameResponse">
-
-       </wsdl:output>
-
-      </wsdl:operation>
-
    </wsdl:portType>
 
    <wsdl:binding name="ExternalStudentSoapBinding" type="impl:ExternalStudent">
 
       <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="getMdp">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getMdpRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getMdpResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="lookTByName">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="lookTByNameRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="lookTByNameResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="bookAppointement">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="bookAppointementRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="bookAppointementResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="giveFeedback">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="giveFeedbackRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="giveFeedbackResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getAllTutors">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getAllTutorsRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getAllTutorsResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="setMdp">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="setMdpRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="setMdpResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="setFullName">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="setFullNameRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="setFullNameResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="lookTByFirstName">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="lookTByFirstNameRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="lookTByFirstNameResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="setUniversity">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="setUniversityRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="setUniversityResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getUniversity">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getUniversityRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getUniversityResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="lookTByLastName">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="lookTByLastNameRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="lookTByLastNameResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="lookTBySkill">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="lookTBySkillRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="lookTBySkillResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
 
       <wsdl:operation name="getFullName">
 
@@ -625,211 +911,13 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
       </wsdl:operation>
 
-      <wsdl:operation name="getMdp">
-
-         <wsdlsoap:operation soapAction=""/>
-
-         <wsdl:input name="getMdpRequest">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:input>
-
-         <wsdl:output name="getMdpResponse">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:output>
-
-      </wsdl:operation>
-
-      <wsdl:operation name="lookTByName">
-
-         <wsdlsoap:operation soapAction=""/>
-
-         <wsdl:input name="lookTByNameRequest">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:input>
-
-         <wsdl:output name="lookTByNameResponse">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:output>
-
-      </wsdl:operation>
-
-      <wsdl:operation name="setMdp">
-
-         <wsdlsoap:operation soapAction=""/>
-
-         <wsdl:input name="setMdpRequest">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:input>
-
-         <wsdl:output name="setMdpResponse">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:output>
-
-      </wsdl:operation>
-
-      <wsdl:operation name="getUniversity">
-
-         <wsdlsoap:operation soapAction=""/>
-
-         <wsdl:input name="getUniversityRequest">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:input>
-
-         <wsdl:output name="getUniversityResponse">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:output>
-
-      </wsdl:operation>
-
-      <wsdl:operation name="setUniversity">
-
-         <wsdlsoap:operation soapAction=""/>
-
-         <wsdl:input name="setUniversityRequest">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:input>
-
-         <wsdl:output name="setUniversityResponse">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:output>
-
-      </wsdl:operation>
-
-      <wsdl:operation name="getAllTutors">
-
-         <wsdlsoap:operation soapAction=""/>
-
-         <wsdl:input name="getAllTutorsRequest">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:input>
-
-         <wsdl:output name="getAllTutorsResponse">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:output>
-
-      </wsdl:operation>
-
-      <wsdl:operation name="BookAppointement">
-
-         <wsdlsoap:operation soapAction=""/>
-
-         <wsdl:input name="BookAppointementRequest">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:input>
-
-         <wsdl:output name="BookAppointementResponse">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:output>
-
-      </wsdl:operation>
-
-      <wsdl:operation name="lookTByLastName">
-
-         <wsdlsoap:operation soapAction=""/>
-
-         <wsdl:input name="lookTByLastNameRequest">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:input>
-
-         <wsdl:output name="lookTByLastNameResponse">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:output>
-
-      </wsdl:operation>
-
-      <wsdl:operation name="lookTByFirstName">
-
-         <wsdlsoap:operation soapAction=""/>
-
-         <wsdl:input name="lookTByFirstNameRequest">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:input>
-
-         <wsdl:output name="lookTByFirstNameResponse">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:output>
-
-      </wsdl:operation>
-
-      <wsdl:operation name="lookTBySkill">
-
-         <wsdlsoap:operation soapAction=""/>
-
-         <wsdl:input name="lookTBySkillRequest">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:input>
-
-         <wsdl:output name="lookTBySkillResponse">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:output>
-
-      </wsdl:operation>
-
-      <wsdl:operation name="setFullName">
-
-         <wsdlsoap:operation soapAction=""/>
-
-         <wsdl:input name="setFullNameRequest">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:input>
-
-         <wsdl:output name="setFullNameResponse">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:output>
-
-      </wsdl:operation>
-
    </wsdl:binding>
 
    <wsdl:service name="ExternalStudentService">
 
       <wsdl:port binding="impl:ExternalStudentSoapBinding" name="ExternalStudent">
 
-         <wsdlsoap:address location="http://localhost:8080/ExternalStudentWebService/services/ExternalStudent"/>
+         <wsdlsoap:address location="http://localhost:8070/ExternalStudentWebService/services/ExternalStudent"/>
 
       </wsdl:port>
 

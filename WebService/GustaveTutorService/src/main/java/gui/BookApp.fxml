@@ -5,34 +5,58 @@
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.BookAppController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.BookAppController">
    <children>
-      <Text fill="#004365" layoutX="47.0" layoutY="106.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Choose Availability :" wrappingWidth="157.95904541015625">
+      <Text fill="#004365" layoutX="20.0" layoutY="81.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Choose Availability :" wrappingWidth="157.95904541015625">
          <font>
             <Font size="16.0" />
          </font>
       </Text>
-      <DatePicker fx:id="availability_calendar" layoutX="85.0" layoutY="135.0" />
-      <ListView fx:id="list_availability" layoutX="172.0" layoutY="222.0" prefHeight="105.0" prefWidth="255.0" style="-fx-border-color: #004365;" />
-      <ComboBox fx:id="start" layoutX="342.0" layoutY="135.0" prefHeight="25.0" prefWidth="28.0" />
-      <ComboBox fx:id="end" layoutX="452.0" layoutY="134.0" prefHeight="25.0" prefWidth="49.0" />
-      <Button fx:id="book_btn" layoutX="218.0" layoutY="342.0" mnemonicParsing="false" onAction="#book" prefHeight="33.0" prefWidth="131.0" style="-fx-background-color: #004365;" text="Book" textFill="WHITE" />
-      <Text fill="#004365" layoutX="242.0" layoutY="206.0" strokeType="OUTSIDE" strokeWidth="0.0" text=" Availabilities" wrappingWidth="157.95904541015625">
+      <DatePicker fx:id="availability_calendar" layoutX="85.0" layoutY="109.0" />
+      <ListView fx:id="list_availability" layoutX="24.0" layoutY="215.0" prefHeight="105.0" prefWidth="255.0" style="-fx-border-color: #004365;" />
+      <ComboBox fx:id="start" layoutX="323.0" layoutY="109.0" prefHeight="25.0" prefWidth="91.0" />
+      <ComboBox fx:id="end" layoutX="464.0" layoutY="109.0" prefHeight="25.0" prefWidth="91.0" />
+      <Button fx:id="back_btn" layoutX="452.0" layoutY="344.0" mnemonicParsing="false" onAction="#book" prefHeight="33.0" prefWidth="131.0" style="-fx-background-color: #004365;" text="Book" textFill="WHITE" />
+      <Text fill="#004365" layoutX="86.0" layoutY="194.0" strokeType="OUTSIDE" strokeWidth="0.0" text=" Availabilities" wrappingWidth="157.95904541015625">
          <font>
             <Font size="16.0" />
          </font>
       </Text>
-      <Text fx:id="messsage" fill="#39ac2f" layoutX="393.0" layoutY="359.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="13.333333333333258" />
-      <Label layoutX="37.0" layoutY="138.0" prefHeight="17.0" prefWidth="36.0" text="Date" textFill="#004365" />
-      <Label layoutX="301.0" layoutY="140.0" text="From" textFill="#004365" />
-      <Label layoutX="420.0" layoutY="139.0" text="To" textFill="#004365" />
+      <Text fx:id="messsage" fill="#39ac2f" layoutX="172.0" layoutY="365.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="255.00000715255737" />
+      <Label layoutX="27.0" layoutY="113.0" prefHeight="17.0" prefWidth="36.0" text="Date" textFill="#004365" />
+      <Label layoutX="286.0" layoutY="113.0" text="From" textFill="#004365" />
+      <Label layoutX="428.0" layoutY="113.0" text="To" textFill="#004365" />
       <Text fill="#004365" layoutX="172.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Book Appointment" textAlignment="CENTER" wrappingWidth="297.680908203125">
          <font>
             <Font name="System Bold Italic" size="33.0" />
+         </font>
+      </Text>
+      <Button fx:id="back_btn" layoutX="20.0" layoutY="344.0" mnemonicParsing="false" onAction="#back" prefHeight="33.0" prefWidth="131.0" style="-fx-background-color: #004365;" text="Back" textFill="WHITE" />
+      <Text fill="#004365" layoutX="286.0" layoutY="206.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Rate of the Tutor: " wrappingWidth="131.00000023841858">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Text>
+      <Text fx:id="rate" fill="#004365" layoutX="435.0" layoutY="206.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="139.00000023841858">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Text>
+      <TextField fx:id="rib" layoutX="343.0" layoutY="267.0" />
+      <Text fill="#004365" layoutX="292.0" layoutY="239.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter your Rib and click on Book to Pay :" wrappingWidth="286.0000002384186">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Text>
+      <ComboBox fx:id="currency" layoutX="464.0" layoutY="152.0" prefHeight="25.0" prefWidth="91.0" />
+      <Text fill="#004365" layoutX="294.0" layoutY="170.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Choose Currency :" wrappingWidth="131.00000023841858">
+         <font>
+            <Font size="16.0" />
          </font>
       </Text>
    </children>

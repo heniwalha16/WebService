@@ -45,7 +45,7 @@
                   <Font size="13.0" />
                </font></Label>
             <Text fx:id="mail" layoutX="88.0" layoutY="227.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="210.33331298828125" />
-            <Button fx:id="gfdbk" layoutX="47.0" layoutY="300.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="139.0" style="-fx-background-color: #004365;" text="Give Feedback" textFill="WHITE" />
+            <Button fx:id="gfdbk" layoutX="47.0" layoutY="300.0" mnemonicParsing="false" onAction="#passToFeedback" prefHeight="25.0" prefWidth="139.0" style="-fx-background-color: #004365;" text="Give Feedback" textFill="WHITE" />
          </children>
       </AnchorPane>
    </children>

@@ -20,6 +20,43 @@
       <parameter name="className" value="student.ExternalStudentSoapBindingImpl"/>
       <parameter name="wsdlPortType" value="ExternalStudent"/>
       <parameter name="typeMappingVersion" value="1.2"/>
+      <operation name="getMdp" qname="operNS:getMdp" xmlns:operNS="http://student" returnQName="retNS:getMdpReturn" xmlns:retNS="http://student" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+      </operation>
+      <operation name="lookTByName" qname="operNS:lookTByName" xmlns:operNS="http://student" returnQName="retNS:lookTByNameReturn" xmlns:retNS="http://student" returnType="rtns:Tutors" xmlns:rtns="http://student" soapAction="" >
+        <parameter qname="pns:firstname" xmlns:pns="http://student" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:lastname" xmlns:pns="http://student" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="bookAppointement" qname="operNS:bookAppointement" xmlns:operNS="http://student" returnQName="retNS:bookAppointementReturn" xmlns:retNS="http://student" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:mail" xmlns:pns="http://student" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:fullName" xmlns:pns="http://student" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:apt" xmlns:pns="http://student" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="giveFeedback" qname="operNS:giveFeedback" xmlns:operNS="http://student" soapAction="" >
+        <parameter qname="pns:feedback" xmlns:pns="http://student" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:mail" xmlns:pns="http://student" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="getAllTutors" qname="operNS:getAllTutors" xmlns:operNS="http://student" returnQName="retNS:getAllTutorsReturn" xmlns:retNS="http://student" returnType="rtns:Tutors" xmlns:rtns="http://student" soapAction="" >
+      </operation>
+      <operation name="setMdp" qname="operNS:setMdp" xmlns:operNS="http://student" soapAction="" >
+        <parameter qname="pns:mdp" xmlns:pns="http://student" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="setFullName" qname="operNS:setFullName" xmlns:operNS="http://student" soapAction="" >
+        <parameter qname="pns:fullName" xmlns:pns="http://student" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="lookTByFirstName" qname="operNS:lookTByFirstName" xmlns:operNS="http://student" returnQName="retNS:lookTByFirstNameReturn" xmlns:retNS="http://student" returnType="rtns:Tutors" xmlns:rtns="http://student" soapAction="" >
+        <parameter qname="pns:firstname" xmlns:pns="http://student" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="setUniversity" qname="operNS:setUniversity" xmlns:operNS="http://student" soapAction="" >
+        <parameter qname="pns:university" xmlns:pns="http://student" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="getUniversity" qname="operNS:getUniversity" xmlns:operNS="http://student" returnQName="retNS:getUniversityReturn" xmlns:retNS="http://student" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+      </operation>
+      <operation name="lookTByLastName" qname="operNS:lookTByLastName" xmlns:operNS="http://student" returnQName="retNS:lookTByLastNameReturn" xmlns:retNS="http://student" returnType="rtns:Tutors" xmlns:rtns="http://student" soapAction="" >
+        <parameter qname="pns:lastname" xmlns:pns="http://student" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="lookTBySkill" qname="operNS:lookTBySkill" xmlns:operNS="http://student" returnQName="retNS:lookTBySkillReturn" xmlns:retNS="http://student" returnType="rtns:Tutors" xmlns:rtns="http://student" soapAction="" >
+        <parameter qname="pns:skill" xmlns:pns="http://student" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
       <operation name="getFullName" qname="operNS:getFullName" xmlns:operNS="http://student" returnQName="retNS:getFullNameReturn" xmlns:retNS="http://student" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
       </operation>
       <operation name="getUser" qname="operNS:getUser" xmlns:operNS="http://student" returnQName="retNS:getUserReturn" xmlns:retNS="http://student" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
@@ -27,42 +64,7 @@
       <operation name="setUser" qname="operNS:setUser" xmlns:operNS="http://student" soapAction="" >
         <parameter qname="pns:user" xmlns:pns="http://student" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
       </operation>
-      <operation name="getMdp" qname="operNS:getMdp" xmlns:operNS="http://student" returnQName="retNS:getMdpReturn" xmlns:retNS="http://student" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
-      </operation>
-      <operation name="lookTByName" qname="operNS:lookTByName" xmlns:operNS="http://student" returnQName="retNS:lookTByNameReturn" xmlns:retNS="http://student" returnType="rtns:Tutors" xmlns:rtns="http://student" soapAction="" >
-        <parameter qname="pns:firstname" xmlns:pns="http://student" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
-        <parameter qname="pns:lastname" xmlns:pns="http://student" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
-      </operation>
-      <operation name="setMdp" qname="operNS:setMdp" xmlns:operNS="http://student" soapAction="" >
-        <parameter qname="pns:mdp" xmlns:pns="http://student" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
-      </operation>
-      <operation name="getUniversity" qname="operNS:getUniversity" xmlns:operNS="http://student" returnQName="retNS:getUniversityReturn" xmlns:retNS="http://student" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
-      </operation>
-      <operation name="setUniversity" qname="operNS:setUniversity" xmlns:operNS="http://student" soapAction="" >
-        <parameter qname="pns:university" xmlns:pns="http://student" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
-      </operation>
-      <operation name="getAllTutors" qname="operNS:getAllTutors" xmlns:operNS="http://student" returnQName="retNS:getAllTutorsReturn" xmlns:retNS="http://student" returnType="rtns:Tutors" xmlns:rtns="http://student" soapAction="" >
-      </operation>
-      <operation name="bookAppointement" qname="operNS:BookAppointement" xmlns:operNS="http://student" soapAction="" >
-        <parameter qname="pns:fullName" xmlns:pns="http://student" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
-        <parameter qname="pns:firstName" xmlns:pns="http://student" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
-        <parameter qname="pns:lastName" xmlns:pns="http://student" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
-        <parameter qname="pns:startt" xmlns:pns="http://student" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
-        <parameter qname="pns:endd" xmlns:pns="http://student" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
-      </operation>
-      <operation name="lookTByLastName" qname="operNS:lookTByLastName" xmlns:operNS="http://student" returnQName="retNS:lookTByLastNameReturn" xmlns:retNS="http://student" returnType="rtns:Tutors" xmlns:rtns="http://student" soapAction="" >
-        <parameter qname="pns:lastname" xmlns:pns="http://student" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
-      </operation>
-      <operation name="lookTByFirstName" qname="operNS:lookTByFirstName" xmlns:operNS="http://student" returnQName="retNS:lookTByFirstNameReturn" xmlns:retNS="http://student" returnType="rtns:Tutors" xmlns:rtns="http://student" soapAction="" >
-        <parameter qname="pns:firstname" xmlns:pns="http://student" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
-      </operation>
-      <operation name="lookTBySkill" qname="operNS:lookTBySkill" xmlns:operNS="http://student" returnQName="retNS:lookTBySkillReturn" xmlns:retNS="http://student" returnType="rtns:Tutors" xmlns:rtns="http://student" soapAction="" >
-        <parameter qname="pns:skill" xmlns:pns="http://student" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
-      </operation>
-      <operation name="setFullName" qname="operNS:setFullName" xmlns:operNS="http://student" soapAction="" >
-        <parameter qname="pns:fullName" xmlns:pns="http://student" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
-      </operation>
-      <parameter name="allowedMethods" value="lookTByName lookTByFirstName getUser getMdp lookTBySkill getUniversity getAllTutors setMdp lookTByLastName bookAppointement setFullName setUser getFullName setUniversity"/>
+      <parameter name="allowedMethods" value="lookTByName lookTByFirstName giveFeedback getUser getMdp lookTBySkill getUniversity getAllTutors setMdp lookTByLastName bookAppointement setFullName setUser setUniversity getFullName"/>
 
       <typeMapping
         xmlns:ns="http://student"
@@ -70,6 +72,35 @@
         type="java:student.Tutors"
         serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
         deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <arrayMapping
+        xmlns:ns="http://student"
+        qname="ns:ArrayOf_xsd_string"
+        type="java:java.lang.String[]"
+        innerType="cmp-ns:string" xmlns:cmp-ns="http://www.w3.org/2001/XMLSchema"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://student"
+        qname="ns:Tutor"
+        type="java:student.Tutor"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <arrayMapping
+        xmlns:ns="http://student"
+        qname="ns:ArrayOfArrayOf_xsd_string"
+        type="java:java.lang.String[][]"
+        innerType="cmp-ns:ArrayOf_xsd_string" xmlns:cmp-ns="http://student"
+        encodingStyle=""
+      />
+      <arrayMapping
+        xmlns:ns="http://student"
+        qname="ns:ArrayOfTutor"
+        type="java:student.Tutor[]"
+        innerType="cmp-ns:Tutor" xmlns:cmp-ns="http://student"
         encodingStyle=""
       />
   </service>

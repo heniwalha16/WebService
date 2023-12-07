@@ -15,17 +15,23 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.ListView;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 import student.Student;
+import student.StudentService;
 
 public class BookAppController  implements Initializable {
 	String Student;
 	String Mail;
+	String studentMail;
 	ObservableList<String> timeList = FXCollections.observableArrayList();
 	 @FXML
 	 private DatePicker availability_calendar;
@@ -35,6 +41,8 @@ public class BookAppController  implements Initializable {
      private ComboBox<String> end;
      @FXML
      private Button book_btn;
+     @FXML
+     private Button back_btn;
      @FXML
      private ListView<String> list_availability;
      @FXML
@@ -62,18 +70,47 @@ public class BookAppController  implements Initializable {
             // Convert the LocalDate to a string using DateTimeFormatter
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
            dateString = selectedDate.format(formatter);
-            dateString=dateString+start.getValue()+" to "+end.getValue();}
-        System.out.println(tuts.bookAppointment(Mail, this.Student, dateString));
-        //messsage.setText()
+            dateString=dateString+" "+start.getValue()+" to "+end.getValue();}
+        System.out.println(dateString);
+        System.out.println(Mail);
+        //System.out.println(tuts.bookAppointment("alice.smith@univ-eiffel.fr", "hiha3", "2023-12-01 9:00 to 10:00"));
+        //System.out.println(tuts.bookAppointment(Mail, this.Student, dateString));
+        System.out.println(Mail+Student+dateString);
+        messsage.setText(tuts.bookAppointment(Mail, this.Student, dateString));
          
  	}
-     public void setData(String Student,String Mail,ObservableList<String> timeList) {
+     public void setData(String Student,String Mail,ObservableList<String> timeList,String studentMail) {
     	 this.Student=Student;
     	 this.Mail=Mail;
     	 this.timeList=timeList;
+    	 this.studentMail=studentMail;
     	 list_availability.setItems(timeList);
      }
 
+     @FXML
+     public void back(ActionEvent event) throws IOException {
+    	 StudentService sts = new StudentService();
+         // Load the new FXML file
+         FXMLLoader loader = new FXMLLoader(getClass().getResource("student.fxml"));
+         Parent root = loader.load();
+         studentController StudentController = loader.getController();
+         StudentController.setData(studentMail,sts.retrieveElementt(studentMail).getFullName());
+      
+         //Parent root = loader.load();
+         // Set up the scene
+         Scene scene = new Scene(root);
 
+         // Set up the stage
+         Stage stage = new Stage();
+         stage.setTitle("Login JavaFX Application");
+         stage.setScene(scene);
+
+         // Close the current stage
+         Stage currentStage = (Stage) back_btn.getScene().getWindow();
+         currentStage.close();
+
+         // Show the new stage
+         stage.show();
+     }
 	
 }

@@ -57,9 +57,10 @@ public class LoginController implements Initializable{
 		try {
             // Load the new FXML file
             FXMLLoader loader = new FXMLLoader(getClass().getResource("student.fxml"));
-            Parent root = loader.load();
+            
             studentController studentController = loader.getController();
-            studentController.setData(sts.retrieveElement(Mail));
+            studentController.setData(Mail,sts.retrieveElementt(Mail).getFullName());
+            Parent root = loader.load();
             // Set up the scene
             Scene scene = new Scene(root);
 

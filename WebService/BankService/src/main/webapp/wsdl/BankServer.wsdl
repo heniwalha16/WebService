@@ -82,7 +82,7 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
       <wsdl:port binding="impl:BankServerSoapBinding" name="BankServer">
 
-         <wsdlsoap:address location="http://localhost:8080/BankService/services/BankServer"/>
+         <wsdlsoap:address location="http://localhost:8070/BankService/services/BankServer"/>
 
       </wsdl:port>
 
